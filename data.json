@@ -1,0 +1,87 @@
+[
+  {
+    "idSP":"pc001",
+    "nameSP":"PC HP 400 G4 MT 2XM15PA (i7-7700)",
+    "info":{
+      "type":"PC",
+      "des":["CPU: Intel Core i7 7700",
+             "Bộ nhớ: 1x8GB,DDR4 2400,1TB 7200rpm",
+             "Đồ họa: NVIDIA GeForce GT730 2GB"],
+      "price":"17090000",
+      "images":[
+        "http://sahsakjks",
+        "http://sahsakjks2"
+      ],
+      "quantity":100,
+      "supplier":"HP"
+    }
+  },
+    {
+    "idSP":"pc002",
+    "nameSP":"PC Asus Vivo Stick TS-10",
+    "info":{
+      "type":"PC",
+      "des":["CPU: Intel Atom X5 Z8350",
+             "Bộ nhớ: 1x2GB, LPDDR3 1600, 32GB",
+             "Đồ họa: Intel HD Graphics 400"],
+      "price":"3799000",
+      "images":[
+        "http://sahsakjks",
+        "http://sahsakjks2"
+      ],
+      "quantity":100,
+      "supplier":"Asus"
+    }
+  },
+  {
+    "idSP":"pc003",
+    "nameSP":"PC Asus UN62-M218M",
+    "info":{
+      "type":"PC",
+      "des":["CPU: Intel Core i3 4010U",
+             "Bộ nhớ: 2 Slots, 1 x 4GB, DDR3L, 32 GB",
+             "Đồ họa: Intel HD Intel 4400"],
+      "price":"6400000",
+      "images":[
+        "http://sahsakjks",
+        "http://sahsakjks2"
+      ],
+      "quantity":100,
+      "supplier":"Asus"
+    }
+  },
+    {
+    "idSP":"pc004",
+    "nameSP":"PC HP EliteOne 800 G3 Touch AIO 23.8 (1MF29PA)",
+    "info":{
+      "type":"PC",
+      "des":["CPU: Intel Core i5 7500 3.4GHz - 6M",
+             "Bộ nhớ: 1x 8GB, 2 Slots, DDR4/2400, 1TB 7200rpm Sata",
+             "Đồ họa: Intel HD Graphics 630"],
+      "price":"25690000",
+      "images":[
+        "http://sahsakjks",
+        "http://sahsakjks2"
+      ],
+      "quantity":100,
+      "supplier":"HP"
+    }
+  },
+   {
+    "idSP":"pc005",
+    "nameSP":"PC HP 400 G4 1AY74PT(i5-7500)",
+    "info":{
+      "type":"PC",
+      "des":["CPU: Intel Core i5 7500 3.4GHz - 6M",
+             "Bộ nhớ: 2 Slots, 1x4GB, DDR4 2400, 1TB 7200rpm, DVD-RW",
+             "Đồ họa: Intel HD Graphics 630"],
+      "price":"12448000",
+      "images":[
+        "http://sahsakjks",
+        "http://sahsakjks2"
+      ],
+      "quantity":100,
+      "supplier":"HP"
+    }
+  }
+]
