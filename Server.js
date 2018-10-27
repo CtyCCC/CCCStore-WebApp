@@ -6,11 +6,11 @@ var AWS = require('aws-sdk');
 
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
-    region:"us-west-2",
-    endpoint:"https://dynamodb.us-west-2.amazonaws.com"
-})
-AWS.config.accessKeyId="AKIAIXXPJDMWS2PFFHSQ";
-AWS.config.secretAccessKey="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";
+    region: "us-west-2",
+    endpoint: "http://localhost:8000"
+});
+AWS.config.accessKeyId="sadsadd";
+AWS.config.secretAccessKey="gfgfgfgfgfgf";
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 app.use('/public', express.static('public'));
@@ -37,9 +37,12 @@ app.get("/product",function (req,res) {
                 data.Items.forEach(function(product){
                     console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
-                    var giasp = '#price_sp_'
+                    var giasp = '#price_sp_';
+                    var imgsp = '#img_sp_';
+                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price+"VNĐ");
+                    $(imgsp + index_sp).attr('src', product.info.images[0]);
                     index_sp = index_sp + 1;
                 });
                 res.writeHead(200,{'Context-Type':'text/html'});
@@ -55,5 +58,4 @@ app.get("/product",function (req,res) {
     }
 });
 
-
-app.listen(8000);
+app.listen(8088);
