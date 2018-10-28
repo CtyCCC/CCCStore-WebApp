@@ -14,17 +14,18 @@ AWS.config.accessKeyId="sadsadd";
 AWS.config.secretAccessKey="gfgfgfgfgfgf";
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+//lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
 
 
 ////Get trang chủ///////
-app.get("/",function (req,res) {
-    res.sendFile(__dirname+"/index.html");
-
-});
+// app.get("/",function (req,res) {
+//     res.sendFile(__dirname+"/product.html");
+//
+// });
 
 ////Get trang product//////
-app.get("/product",function (req,res) {
+app.get("/",function (req,res) {
     var params={TableName:"Product"};
     var index_sp = 1;
     docClient.scan(params, onScan);
@@ -35,8 +36,17 @@ app.get("/product",function (req,res) {
             console.log("Scan succeeded.");
             fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
                 var $ = cheerio.load(data1);
+
+                //cái này cho 2 cái banner
+                var banner1 = '#banner11';
+                var banner2 = '#banner22';
+                //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
+                //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
+                $(banner1 + "").attr('href',"product-detail?id=LT005");
+                $(banner2 + "").attr('href',"product-detail?id=LK004");
+
                 data.Items.forEach(function(product){
-                    console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
+                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
@@ -52,7 +62,7 @@ app.get("/product",function (req,res) {
                 res.end();
             });
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanning for more...");
+                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
