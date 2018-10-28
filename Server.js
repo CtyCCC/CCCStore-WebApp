@@ -3,6 +3,7 @@ var app = express();
 var cheerio = require('cheerio');
 var fs = require('fs');
 var AWS = require('aws-sdk');
+var url = require('url');
 
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
@@ -41,8 +42,9 @@ app.get("/product",function (req,res) {
                     var imgsp = '#img_sp_';
                     //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
-                    $(giasp + index_sp + "").text(product.info.price+"VNĐ");
+                    $(giasp + index_sp + "").text(product.info.price+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
+                    $(namesp + index_sp + "").attr('href',"product-detail?id="+product.idSP);
                     index_sp = index_sp + 1;
                 });
                 res.writeHead(200,{'Context-Type':'text/html'});
@@ -57,5 +59,46 @@ app.get("/product",function (req,res) {
         }
     }
 });
+
+///Get trang product-detail///////
+app.get('/product-detail',function (req,res) {
+    var route = url.parse(req.url,true).query;
+    console.log(route);
+    var id = route.id;
+    var params = {
+        TableName : "Product",
+        KeyConditionExpression: "#id = :iddd",
+        ExpressionAttributeNames:{
+            "#id": "idSP"
+        },
+        ExpressionAttributeValues: {
+            ":iddd": id
+        }
+    };
+    docClient.query(params, function(err, data) {
+        if (err) {
+            console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Query succeeded.");
+            fs.readFile(__dirname+"/product-detail.html",'utf8',function (err,data1) {
+                var $ = cheerio.load(data1);
+                data.Items.forEach(function(item) {
+                    $('#name_sp').text(item.nameSP);
+                    $('#price_sp').text(item.info.price+" VNĐ");
+                    $('#img_1_1').attr('data-thumb',item.info.images[0]);
+                    $('#img_1_2').attr('src',item.info.images[0]);
+                    $('#img_2_1').attr('data-thumb',item.info.images[1]);
+                    $('#img_2_2').attr('src',item.info.images[1]);
+                    $('#img_3_1').attr('data-thumb',item.info.images[2]);
+                    $('#img_3_2').attr('src',item.info.images[2]);
+                    $('#des').text(item.info.des);
+                });
+                res.writeHead(200,{'Context-Type':'text/html'});
+                res.write($.html());
+                res.end();
+            })
+        }
+    });
+})
 
 app.listen(8088);
