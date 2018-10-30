@@ -4,6 +4,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var AWS = require('aws-sdk');
 var url = require('url');
+var storage = require('node-localstorage');
 
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
@@ -108,6 +109,17 @@ app.get('/product-detail',function (req,res) {
                 res.end();
             })
         }
+    });
+})
+
+app.get('/cart',function (req,res) {
+    fs.readFile(__dirname+"/cart.html",'utf8',function (err,data1) {
+        // $('#namesp1').text(localStorage.getItem('abc'));
+        // $('#giasp1').text(localStorage.getItem('Quạt case Aigo ICY T120 RGB'));
+        //storage.LocalStorage.setItem('aaa','bbbbb');
+        res.writeHead(200,{'Context-Type':'text/html'});
+        res.write(data1);
+        res.end();
     });
 })
 
