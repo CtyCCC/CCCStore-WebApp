@@ -67,19 +67,15 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Trang chủ</a>
+								<a href="/">Trang chủ</a>
 							</li>
 
 							<li>
-								<a href="product.html">Mua hàng</a>
+								<a href="/cart">Giỏ hàng</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Giỏ hàng</a>
-							</li>
-
-							<li>
-								<a href="contact.html">Liên hệ</a>
+								<a href="https://www.facebook.com/">Liên hệ</a>
 							</li>
 						</ul>
 					</nav>
@@ -94,8 +90,8 @@
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<a href="cart.html"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
-						<span class="header-icons-noti">0</span>
+						<a href="/cart"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+						<span class="header-icons-noti" id="cart-noti">0</span>
 
 						<!-- Header cart noti -->
 						
@@ -131,7 +127,7 @@
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img id="idimg1" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
+									<img class="imge" id="idimg1" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
 							<td class="column-2" id="idsp1">aaaaaaa</td>
@@ -142,20 +138,20 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input id="sl_sp_1" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">$36.00</td>
+							<td id="tt_sp_1" class="column-5">$36.00</td>
 						</tr>
 
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img id="idimg2" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
+									<img class="imge" id="idimg2" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
 							<td class="column-2" id="idsp2">aaaaaaa</td>
@@ -166,20 +162,20 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input id="sl_sp_2" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">$36.00</td>
+							<td id="tt_sp_2" class="column-5">$36.00</td>
 						</tr>
 
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img id="idimg3" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
+									<img class="imge" id="idimg3" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
 							<td class="column-2" id="idsp3">aaaaaaa</td>
@@ -190,20 +186,20 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input id="sl_sp_3" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">$36.00</td>
+							<td id="tt_sp_3" class="column-5">$36.00</td>
 						</tr>
 
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img id="idimg4" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
+									<img class="imge" id="idimg4" src="public/images/item-10.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
 							<td class="column-2" id="idsp4">aaaaaaa</td>
@@ -214,20 +210,20 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input id="sl_sp_4" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">$36.00</td>
+							<td id="tt_sp_4" class="column-5">$36.00</td>
 						</tr>
 
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img id="idimg5" src="public/images/item-05.jpg" alt="IMG-PRODUCT">
+									<img class="imge" id="idimg5" src="public/images/item-05.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
 							<td class="column-2" id="idsp5">Mug Adventure</td>
@@ -238,14 +234,14 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
+									<input id="sl_sp_5" class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">$16.00</td>
+							<td id="tt_sp_5" class="column-5">$16.00</td>
 						</tr>
 					</table>
 				</div>
@@ -324,16 +320,53 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
-	<script>
+	<script type="text/javascript">
 		var count =1;
-        for (var i=0, iC=localStorage.length; i<iC; ++i) {
-            var storageKey = localStorage.key(i);
-            //console.log( storageKey + ': ' + localStorage.getItem(storageKey) );
-			document.getElementById('idsp'+count).innerHTML  = JSON.parse(localStorage.getItem(storageKey)).name;
-            document.getElementById('idgiasp'+count).innerHTML  = storageKey;
-			document.getElementById('idimg' + count).src =JSON.parse(localStorage.getItem(storageKey)).image;
+        for (var i=0, sl=localStorage.length; i<sl; ++i) {
+            var Key = localStorage.key(i);
+            var gia = parseInt(JSON.parse(localStorage.getItem(Key)).price);
+            document.getElementById('cart-noti').innerHTML=localStorage.length;
+            document.getElementById('idsp'+count).innerHTML  = JSON.parse(localStorage.getItem(Key)).name;
+            document.getElementById('idgiasp'+count).innerHTML  = gia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
+			document.getElementById('idimg' + count).src = JSON.parse(localStorage.getItem(Key)).image;
+			document.getElementById('sl_sp_'+count).setAttribute('value',JSON.parse(localStorage.getItem(Key)).sl);
+			var tt = gia * document.getElementById('sl_sp_'+count).getAttribute('value');
+			document.getElementById('tt_sp_'+count).innerHTML = tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
 			count++;
         }
+
+        $('.btn-num-product-up').each(function(){
+                $(this).on('click',function () {
+                    var key = $(this).parent().parent().parent().find('.column-2').html();
+                    for (var i=0, sl=localStorage.length; i<sl; ++i){
+                        if(key == localStorage.key(i)){
+                            let image = JSON.parse(localStorage.getItem(key)).image;
+                            let price = JSON.parse(localStorage.getItem(key)).price;
+                            let soluong = JSON.parse(localStorage.getItem(key)).sl+1;
+                            var ob =  {'name': key, 'image': image, 'price':price, 'sl':soluong };
+                            localStorage.setItem(key,JSON.stringify(ob));
+                            var tt = price * soluong;
+                            $(this).parent().parent().parent().find('.column-5').text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ") ;
+                        }
+                    };
+                })
+        });
+        $('.btn-num-product-down').each(function(){
+            $(this).on('click',function () {
+                var key = $(this).parent().parent().parent().find('.column-2').html();
+                for (var i=0, sl=localStorage.length; i<sl; ++i){
+                    if(key == localStorage.key(i)){
+                        let image = JSON.parse(localStorage.getItem(key)).image;
+                        let price = JSON.parse(localStorage.getItem(key)).price;
+                        let soluong = JSON.parse(localStorage.getItem(key)).sl-1;
+                        var ob =  {'name': key, 'image': image, 'price':price, 'sl':soluong };
+                        localStorage.setItem(key,JSON.stringify(ob));
+                        var tt = price * soluong;
+                        $(this).parent().parent().parent().find('.column-5').text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ") ;
+                    }
+                };
+            })
+        });
 	</script>
 <!--===============================================================================================-->
 	<script src="public/javascripts/main.js"></script>

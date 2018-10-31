@@ -69,11 +69,7 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Trang chủ</a>
-							</li>
-
-							<li>
-								<a href="/">Mua hàng</a>
+								<a href="/">Trang chủ</a>
 							</li>
 
 							<li>
@@ -96,8 +92,8 @@
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<a href="cart.html"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
-						<span class="header-icons-noti">0</span>
+						<a href="cart"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+						<span class="header-icons-noti" id="cart-noti">0</span>
 
 						<!-- Header cart noti -->
 						
@@ -260,7 +256,7 @@
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" type="buttom" onclick="themVaoGio()">
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" >
 												Thêm vào giỏ
 											</button>
 										</div>
@@ -272,7 +268,7 @@
 										Herschel supply co 25l
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_1">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_1" aria-valuetext="1">
 										$75.00
 									</span>
 								</div>
@@ -301,7 +297,7 @@
 										Denim jacket blue
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_2">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_2" aria-valuetext="1">
 										$92.50
 									</span>
 								</div>
@@ -331,7 +327,7 @@
 										Coach slim easton black
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_3">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_3" aria-valuetext="1">
 										$165.90
 									</span>
 								</div>
@@ -361,7 +357,7 @@
 										Frayed denim shorts
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_4">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_4" aria-valuetext="1">
 										$165.90
 									</span>
 								</div>
@@ -391,7 +387,7 @@
 										Herschel supply co 25l
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_5">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_5" aria-valuetext="1">
 										$75.00
 									</span>
 								</div>
@@ -421,7 +417,7 @@
 										Denim jacket blue
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_6">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_6" aria-valuetext="1">
 										$92.50
 									</span>
 								</div>
@@ -451,7 +447,7 @@
 										Herschel supply co 25l
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_7">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_7" aria-valuetext="1">
 										$75.00
 									</span>
 								</div>
@@ -481,7 +477,7 @@
 										Denim jacket blue
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_8">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_8" aria-valuetext="1">
 										$92.50
 									</span>
 								</div>
@@ -511,7 +507,7 @@
 										Coach slim easton black
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_9">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_9" aria-valuetext="1">
 										$165.90
 									</span>
 								</div>
@@ -541,7 +537,7 @@
 										Frayed denim shorts
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_10">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_10" aria-valuetext="1">
 										$92.50
 									</span>
 								</div>
@@ -571,7 +567,7 @@
 										Herschel supply co 25l
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_11">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_11" aria-valuetext="1">
 										$75.00
 									</span>
 								</div>
@@ -601,7 +597,7 @@
 										Denim jacket blue
 									</a>
 
-									<span class="block2-price m-text6 p-r-5" id="price_sp_12">
+									<span class="block2-price m-text6 p-r-5" id="price_sp_12" aria-valuetext="1">
 										$92.50
 									</span>
 								</div>
@@ -912,16 +908,30 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="public/vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
+        document.getElementById('cart-noti').innerHTML=localStorage.length;
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-            var price = $(this).parent().parent().parent().find('.block2-price').html();
+            var price = $(this).parent().parent().parent().find('.block2-price').attr('aria-valuetext');
             var image = $(this).parent().parent().parent().find('.vcl').attr('src');
-            //var image = document.getElementById('img_sp_1').src;
+            var kt = false;
 
+            //var image = document.getElementById('img_sp_1').src;
 			$(this).on('click', function(){
-			    var ob =  {'name': nameProduct, 'image': image };
-			    localStorage.setItem(price,JSON.stringify(ob));
-				swal(nameProduct, "Đã thêm vào giỏ hàng !", "fail");
+                swal(nameProduct, "Đã thêm vào giỏ hàng !", "fail");
+                for (var i=0, sl=localStorage.length; i<sl; ++i){
+                    if(localStorage.key(i)==nameProduct){
+                        var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+                        var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
+                        localStorage.setItem(nameProduct,JSON.stringify(ob));
+                        kt = true;
+                    }
+                };
+                if(kt==false){
+                    var sl_sp = 1;
+                    var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
+                    localStorage.setItem(nameProduct,JSON.stringify(ob));
+                }
+                document.getElementById('cart-noti').innerHTML=localStorage.length;
 			});
 		});
 

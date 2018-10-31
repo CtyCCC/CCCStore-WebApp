@@ -53,9 +53,10 @@ app.get("/",function (req,res) {
                     var imgsp = '#img_sp_';
                     //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
-                    $(giasp + index_sp + "").text(product.info.price+" VNĐ");
+                    $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
                     $(namesp + index_sp + "").attr('href',"product-detail?id="+product.idSP);
+                    $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
                 res.writeHead(200,{'Context-Type':'text/html'});
@@ -113,12 +114,9 @@ app.get('/product-detail',function (req,res) {
 })
 
 app.get('/cart',function (req,res) {
-    fs.readFile(__dirname+"/cart.html",'utf8',function (err,data1) {
-        // $('#namesp1').text(localStorage.getItem('abc'));
-        // $('#giasp1').text(localStorage.getItem('Quạt case Aigo ICY T120 RGB'));
-        //storage.LocalStorage.setItem('aaa','bbbbb');
+    fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
         res.writeHead(200,{'Context-Type':'text/html'});
-        res.write(data1);
+        res.write(data);
         res.end();
     });
 })
