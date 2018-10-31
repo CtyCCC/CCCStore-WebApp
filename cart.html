@@ -146,6 +146,7 @@
 								</div>
 							</td>
 							<td id="tt_sp_1" class="column-5">$36.00</td>
+							<td id="btnxoa" class="column-6 btn-light">Xóa</td>
 						</tr>
 
 						<tr class="table-row">
@@ -170,6 +171,7 @@
 								</div>
 							</td>
 							<td id="tt_sp_2" class="column-5">$36.00</td>
+							<td id="btnxoa" class="column-6 btn-light">Xóa</td>
 						</tr>
 
 						<tr class="table-row">
@@ -194,6 +196,7 @@
 								</div>
 							</td>
 							<td id="tt_sp_3" class="column-5">$36.00</td>
+							<td id="btnxoa" class="column-6 btn-light">Xóa</td>
 						</tr>
 
 						<tr class="table-row">
@@ -218,6 +221,7 @@
 								</div>
 							</td>
 							<td id="tt_sp_4" class="column-5">$36.00</td>
+							<td id="btnxoa" class="column-6 btn-light">Xóa</td>
 						</tr>
 
 						<tr class="table-row">
@@ -242,6 +246,7 @@
 								</div>
 							</td>
 							<td id="tt_sp_5" class="column-5">$16.00</td>
+							<td id="btnxoa" class="column-6 btn-light">Xóa</td>
 						</tr>
 					</table>
 				</div>
@@ -365,6 +370,13 @@
                         $(this).parent().parent().parent().find('.column-5').text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ") ;
                     }
                 };
+            })
+        });
+        $('.btn-light').each(function(){
+            $(this).on('click',function () {
+                var key = $(this).parent().find('.column-2').html();
+                localStorage.removeItem(key);
+                location.reload();
             })
         });
 	</script>
