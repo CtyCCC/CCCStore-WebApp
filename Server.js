@@ -36,6 +36,7 @@ app.get("/",function (req,res) {
         } else {
             console.log("Scan succeeded.");
             fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+
                 var $ = cheerio.load(data1);
 
                 //cái này cho 2 cái banner
@@ -45,6 +46,17 @@ app.get("/",function (req,res) {
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
                 $(banner1 + "").attr('href',"product-detail?id=LT005");
                 $(banner2 + "").attr('href',"product-detail?id=LK004");
+                
+                //---Load box chứa item
+                for(var i=2;i<data.Items.length;i++)
+                {
+                    var product = $('#boxstart').clone();
+                    product.removeAttr('id');
+                    product.find('#img_sp_1').attr('id','img_sp_'+i);
+                    product.find('#name_sp_1').attr('id','name_sp_'+i);
+                    product.find('#price_sp_1').attr('id','price_sp_'+i);
+                    product.appendTo('.row_product');
+                }
 
                 data.Items.forEach(function(product){
                     //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
@@ -121,4 +133,7 @@ app.get('/cart',function (req,res) {
     });
 })
 
-app.listen(8088);
+var server = app.listen(8088,function () {
+    var port = server.address().port;
+    console.log("Server running at port :",port);
+});
