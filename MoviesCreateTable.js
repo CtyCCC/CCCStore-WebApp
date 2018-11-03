@@ -4,8 +4,8 @@ AWS.config.update({
     region: "us-west-2",
     endpoint: "http://localhost:8000"
 });
-AWS.config.accessKeyId="sadsadd";
-AWS.config.secretAccessKey="gfgfgfgfgfgf";
+AWS.config.accessKeyId="a";
+AWS.config.secretAccessKey="b";
 var dynamodb = new AWS.DynamoDB();
 
 var params = {

@@ -164,7 +164,7 @@
 						Tổng tiền:
 					</span>
 
-					<span class="m-text21 w-size20 w-full-sm">
+					<span class="m-text21 w-size20 w-full-sm" id="tongcart">
 						2 tỷ vnd
 					</span>
 				</div>
@@ -270,6 +270,7 @@
                             localStorage.setItem(key,JSON.stringify(ob));
                             var tt = price * soluong;
                             $(this).parent().parent().parent().find('.column-5').text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ") ;
+
                         }
                     };
                 })
@@ -282,6 +283,8 @@
                         let image = JSON.parse(localStorage.getItem(key)).image;
                         let price = JSON.parse(localStorage.getItem(key)).price;
                         let soluong = JSON.parse(localStorage.getItem(key)).sl-1;
+                        if (soluong<1)
+                        	soluong=1;
                         var ob =  {'name': key, 'image': image, 'price':price, 'sl':soluong };
                         localStorage.setItem(key,JSON.stringify(ob));
                         var tt = price * soluong;
@@ -297,6 +300,19 @@
                 location.reload();
             })
         });
+    </script>
+    <script type="text/javascript">
+
+        var ttt = 0;
+        //document.getElementById('tongcart').innerHTML= "adssadasd";
+        for (var i=0, sl=localStorage.length; i<sl; ++i){
+        	 var key = localStorage.key(i);
+        	 var price = JSON.parse(localStorage.getItem(key)).price;
+             var soluong = JSON.parse(localStorage.getItem(key)).sl;
+             ttt= ttt+ (price*soluong);
+        }
+        document.getElementById('tongcart').innerHTML= ttt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
+
 	</script>
 <!--===============================================================================================-->
 	<script src="public/javascripts/main.js"></script>

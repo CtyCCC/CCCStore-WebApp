@@ -4,15 +4,15 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var AWS = require('aws-sdk');
 var url = require('url');
-var storage = require('node-localstorage');
 
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
     region: "us-west-2",
-    endpoint: "http://localhost:8000"
+    //endpoint: "http://dynamodb.us-west-2.amazonaws.com"
+	endpoint: "http://localhost:8000"
 });
-AWS.config.accessKeyId="sadsadd";
-AWS.config.secretAccessKey="gfgfgfgfgfgf";
+AWS.config.accessKeyId="a";
+AWS.config.secretAccessKey="b";
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 //lấy image icon bootstrap css trong folder public
@@ -84,6 +84,47 @@ app.get("/",function (req,res) {
     }
 });
 
+//product/latop trang laptop
+app.get("/laptop",function (req,res) {
+    // var params = {
+    //     TableName: "Product",
+    //     ProjectionExpression: "nameSP",
+    //     FilterExpression: "#a = :typee",
+    //     ExpressionAttributeNames: {
+    //         "#a": "info.type",
+    //     },
+    //     ExpressionAttributeValues: {
+    //         ":typee" : "CPU"
+    //     }
+    // };
+    // docClient.scan(params, onScan);
+    //
+    // function onScan(err, data11) {
+    //     if (err) {
+    //         console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+    //     } else {
+    //         // print all the movies
+    //         console.log("Scan succeeded.");
+    //         data11.Items.forEach(function(a) {
+    //             console.log("nothing to show")
+    //             console.log(a.idSP + ": " +a.nameSP + "- type:", a.info.type);
+    //         });
+    //     }
+    // }
+});
+
+app.get('/pc',function (req,res) {
+
+})
+
+app.get('/linhkien',function (req,res) {
+
+})
+app.get('/phukien',function (req,res) {
+
+})
+
+
 ///Get trang product-detail///////
 app.get('/product-detail',function (req,res) {
     var route = url.parse(req.url,true).query;
@@ -124,6 +165,7 @@ app.get('/product-detail',function (req,res) {
         }
     });
 })
+
 
 app.get('/cart',function (req,res) {
     fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
