@@ -258,6 +258,8 @@
 			count++;
         }
 
+		tinh_tong_tien();
+
         $('.btn-num-product-up').each(function(){
                 $(this).on('click',function () {
                     var key = $(this).parent().parent().parent().find('.column-2').html();
@@ -270,9 +272,9 @@
                             localStorage.setItem(key,JSON.stringify(ob));
                             var tt = price * soluong;
                             $(this).parent().parent().parent().find('.column-5').text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ") ;
-
                         }
                     };
+                    tinh_tong_tien();
                 })
         });
         $('.btn-num-product-down').each(function(){
@@ -291,6 +293,7 @@
                         $(this).parent().parent().parent().find('.column-5').text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ") ;
                     }
                 };
+                tinh_tong_tien();
             })
         });
         $('.btn-light').each(function(){
@@ -298,22 +301,20 @@
                 var key = $(this).parent().find('.column-2').html();
                 localStorage.removeItem(key);
                 location.reload();
+                tinh_tong_tien();
             })
         });
-    </script>
-    <script type="text/javascript">
-
-        var ttt = 0;
-        //document.getElementById('tongcart').innerHTML= "adssadasd";
-        for (var i=0, sl=localStorage.length; i<sl; ++i){
-        	 var key = localStorage.key(i);
-        	 var price = JSON.parse(localStorage.getItem(key)).price;
-             var soluong = JSON.parse(localStorage.getItem(key)).sl;
-             ttt= ttt+ (price*soluong);
+        function tinh_tong_tien() {
+            var ttt = 0;
+            for (var i=0, sl=localStorage.length; i<sl; ++i){
+                var key = localStorage.key(i);
+                var price = JSON.parse(localStorage.getItem(key)).price;
+                var soluong = JSON.parse(localStorage.getItem(key)).sl;
+                ttt= ttt+ (price*soluong);
+            }
+            document.getElementById('tongcart').innerHTML= ttt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
         }
-        document.getElementById('tongcart').innerHTML= ttt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
-
-	</script>
+    </script>
 <!--===============================================================================================-->
 	<script src="public/javascripts/main.js"></script>
 

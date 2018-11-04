@@ -18,6 +18,7 @@ allMovies.forEach(function(product) {
         Item: {
             "idSP":  product.idSP,
             "nameSP": product.nameSP,
+            "type": product.type,
             "info":  product.info
         }
     };

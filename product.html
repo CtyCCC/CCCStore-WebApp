@@ -173,31 +173,31 @@
 
 						<ul class="p-b-54">
 							<li class="p-t-4">
-								<a href="" class="s-text13 active1">
+								<a href="/" class="s-text13 active1">
 									Tất cả
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="laptop" class="s-text13">
+								<a href="/laptop" class="s-text13">
 									Laptop
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="pc" class="s-text13">
+								<a href="/pc" class="s-text13">
 									PC
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="linhkien" class="s-text13">
+								<a href="/linhkien" class="s-text13">
 									Linh kiện
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="phukien" class="s-text13">
+								<a href="/phukien" class="s-text13">
 									Phụ kiện
 								</a>
 							</li>
@@ -218,9 +218,10 @@
 							</div>
 
 							<div class="flex-sb-m flex-w p-t-16">
+								<form action="/search">
 								<div class="w-size11">
 									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" type="submit" onclick="search()">
 										Tìm
 									</button>
 								</div>
@@ -228,6 +229,7 @@
 								<div class="s-text3 p-t-10 p-b-10">
 									Trong khoảng: <span id="value-lower">610</span>K - <span id="value-upper">980</span>K
 								</div>
+								</form>
 							</div>
 						</div>
 
@@ -372,6 +374,11 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
+
+		function search() {
+			alert($('#value-upper').text());
+
+        }
 	</script>
 
 <!--===============================================================================================-->
