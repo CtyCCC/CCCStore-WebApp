@@ -220,6 +220,8 @@
 							<div class="flex-sb-m flex-w p-t-16">
 								<form action="/search">
 								<div class="w-size11">
+									<input type="text" id="lower" name="lower" hidden="true" value="0">
+									<input type="text" id="upper" name="upper" hidden="true" value="10000000">
 									<!-- Button -->
 									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" type="submit" onclick="search()">
 										Tìm
@@ -227,7 +229,7 @@
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Trong khoảng: <span id="value-lower">610</span>K - <span id="value-upper">980</span>K
+									Trong khoảng: <span id="value-lower">610</span>tr - <span id="value-upper">980</span>tr
 								</div>
 								</form>
 							</div>
@@ -376,8 +378,10 @@
 		});
 
 		function search() {
-			alert($('#value-upper').text());
-
+			var up = $('#value-upper').text();
+			var low = $('#value-lower').text();
+			$('#upper').attr('value',up);
+			$('#lower').attr('value',low);
         }
 	</script>
 
@@ -389,11 +393,11 @@
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 50, 50000 ],
+	        start: [ 1,100 ],
 	        connect: true,
 	        range: {
-	            'min': 50,
-	            'max': 20000
+	            'min': 1,
+	            'max': 100
 	        }
 	    });
 

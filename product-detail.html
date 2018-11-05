@@ -72,11 +72,7 @@
 							</li>
 
 							<li>
-								<a href="/">Mua hàng</a>
-							</li>
-
-							<li>
-								<a href="cart.html">Giỏ hàng</a>
+								<a href="/cart">Giỏ hàng</a>
 							</li>
 
 							<li>
@@ -95,8 +91,8 @@
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<a href="cart.html"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
-						<span class="header-icons-noti">0</span>
+						<a href="/cart"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+						<span class="header-icons-noti" id="cart-noti">0</span>
 
 						<!-- Header cart noti -->
 						
@@ -152,7 +148,7 @@
 					Boxy T-Shirt with Roll Sleeve Detail
 				</h4>
 
-				<span class="m-text17" id="price_sp">
+				<span class="m-text17" id="price_sp" aria-valuetext="1">
 					$22
 				</span>
 
@@ -255,11 +251,29 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
-
+        document.getElementById('cart-noti').innerHTML=localStorage.length;
 		$('.btn-addcart-product-detail').each(function(){
 			var nameProduct = $('.product-detail-name').html();
+			var price = $('#price_sp').attr('aria-valuetext');
+			var image = $('#img_1_2').attr('src');
+            var kt = false;
+
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
+                for (var i=0, sl=localStorage.length; i<sl; ++i){
+                    if(localStorage.key(i)==nameProduct){
+                        var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+                        var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
+                        localStorage.setItem(nameProduct,JSON.stringify(ob));
+                        kt = true;
+                    }
+                };
+                if(kt==false){
+                    var sl_sp = 1;
+                    var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
+                    localStorage.setItem(nameProduct,JSON.stringify(ob));
+                }
+                document.getElementById('cart-noti').innerHTML=localStorage.length;
 			});
 		});
 	</script>

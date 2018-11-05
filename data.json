@@ -7,7 +7,7 @@
       "des":["CPU: Intel Core i7 7700",
              "Bộ nhớ: 1x8GB,DDR4 2400,1TB 7200rpm",
              "Đồ họa: NVIDIA GeForce GT730 2GB"],
-      "price":"17090000",
+      "price":17090000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/001/14580.png",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/001/14580_1511338094-1.jpg",
@@ -25,7 +25,7 @@
       "des":["CPU: Intel Atom X5 Z8350",
              "Bộ nhớ: 1x2GB, LPDDR3 1600, 32GB",
              "Đồ họa: Intel HD Graphics 400"],
-      "price":"3799000",
+      "price":3799000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/002/9899.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/002/9899_1509850033-3.jpg",
@@ -43,7 +43,7 @@
       "des":["CPU: Intel Core i3 4010U",
              "Bộ nhớ: 2 Slots, 1 x 4GB, DDR3L, 32 GB",
              "Đồ họa: Intel HD Intel 4400"],
-      "price":"6400000",
+      "price":6400000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/003/hp-pavilion-570-1.png",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/003/hp-pavilion-570-2.png",
@@ -61,7 +61,7 @@
       "des":["CPU: Intel Core i5 7500 3.4GHz - 6M",
              "Bộ nhớ: 1x 8GB, 2 Slots, DDR4/2400, 1TB 7200rpm Sata",
              "Đồ họa: Intel HD Graphics 630"],
-      "price":"25690000",
+      "price":25690000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/004/13199.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/004/13199_1504404589-2.jpg",
@@ -79,7 +79,7 @@
       "des":["CPU: Intel Core i5 7500 3.4GHz - 6M",
              "Bộ nhớ: 2 Slots, 1x4GB, DDR4 2400, 1TB 7200rpm, DVD-RW",
              "Đồ họa: Intel HD Graphics 630"],
-      "price":"12448000",
+      "price":12448000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/005/12403_1505459491-1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Pc/005/12403_1505459491-2.jpg",
@@ -97,7 +97,7 @@
       "des":["CPU:  Core i7, 7700HQ, 2.8GHz, 6M, Up to: 3.8GHz",
              "Bộ nhớ: 1x8GB, DDR4, 2666MHz, 2 Slots, 128GB M.2 + 1TB 5400rpm",
              "Đồ họa:  NVIDIA GeForce GTX 1060 // Intel HD Graphics 630, 6GB"],
-      "price":"31990000",
+      "price":31990000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/001/14568_1511239535-1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/001/14568_1511239536-3.jpg",
@@ -115,7 +115,7 @@
       "des":["CPU: Core i5, 8250U, 1.6GHz, 6M, Up to: 3.4GHz",
              "Bộ nhớ: 8GB Onboard, LPDDR3, (No upgrade), 256GB M.2 2280 Sata",
              "Đồ họa: Intel UHD Graphics 620, SHARE"],
-      "price":"23290000",
+      "price":23290000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/002/1_42_1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/002/5_22_1.jpg",
@@ -133,7 +133,7 @@
       "des":["CPU: Intel Core i5-8250U (1.60 Ghz up to 3.40 Ghz, 6MB Cache)",
              "Bộ nhớ: 4GB DDR4 2400 MHz (2 slots),HDD 1TB 5400rpm",
              "Đồ họa: Intel UHD Graphics 620"],
-      "price":"13890000",
+      "price":13890000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/003/1_32_2.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/003/3_21_2.jpg",
@@ -151,7 +151,7 @@
       "des":["CPU: Intel Core i3-8130U (2.50 Ghz up to 3.10 Ghz, 3MB Cache)",
              "Bộ nhớ: 4GB DDR4 2400 MHz (2 slots),HDD 1TB 5400rpm",
              "Đồ họa: Intel UHD Graphics 620"],
-      "price":"12490000",
+      "price":12490000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/004/may-xach-tay-laptop-hp-pavilion-15-cs0016tu-4mf08pa-1_-_copy.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/004/may-xach-tay-laptop-hp-pavilion-15-cs0016tu-4mf08pa-3_-_copy.jpg",
@@ -169,7 +169,7 @@
       "des":["CPU: Intel Core i7-8750H (2.20 Ghz up to 4.10 Ghz, 9MB Cache)",
              "Bộ nhớ: 1x 8GB DDR4 2666 MHz (2 slots),HDD 1TB 7200rpm + SSD 128GB",
              "Đồ họa: NVIDIA GeForce GTX 1050 Ti 4GB + Intel UHD Graphics 630"],
-      "price":"32790000",
+      "price":32790000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/005/msi-gp73-8rd-229vn-1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Laptop/005/msi-gp73-8rd-229vn-3.jpg",
@@ -187,7 +187,7 @@
       "des":["Vi xử lý 10 nhân 20 luồng",	
 			 "Xung cơ bản 3.30 GHz, xung tối đa 4.30 GHz",
 			 "Bộ nhớ đệm: 13.75MB"],
-      "price":"25620000",
+      "price":25620000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/001/i9-0000x-1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/001/i9-0000x-2.jpg",
@@ -205,7 +205,7 @@
       "des":["Vi xử lý: 4 nhân 8 luồng",	
 			 "Xung cơ bản 3.60 GHz - xung tối đa 3.90 GHz",
 			 "Bộ nhớ đệm: 4MB"],
-      "price":"4190000",
+      "price":4190000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/002/ryzen-5-vega-1.png",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/002/ryzen_10.jpg"
@@ -221,7 +221,7 @@
     "info":{
       "des":["Hỗ trợ XMP 2.0 Profile",	
 			 "Bus: 3000MHz"],
-      "price":"10765000",
+      "price":10765000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/003/ddr4-gskill-tzrx4-1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/003/ddr4-gskill-tzrx4-2.jpg",
@@ -237,7 +237,7 @@
     "type":"linhkien",
     "info":{
       "des":["Bus: 2133MHz"],
-      "price":"7490000",
+      "price":7490000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/004/8774_1497155421-2+(1).jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/004/8774_1497155421-2.jpg",
@@ -255,7 +255,7 @@
       "des":["Tốc độ 2000 ± 10 % RPM",
       		 "Lưu lượng gió 96.7 CFM ±10%",
       		 " Độ ồn 32 dBA"],
-      "price":"1690000",
+      "price":1690000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/005/quat-case-aigo-icy-t120-rgb-2.png",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Linhkien/005/quat-case-aigo-icy-t120-rgb-5.png",
@@ -273,7 +273,7 @@
       "des":["Kết nối 2 chế độ không dây và có dây",
       		 "DPI tuỳ chỉnh từ 200 - 12,000 DPI.",
       		 "11 nút bấm tuỳ chỉnh bằng phần mềm Logitech Gaming Software"],
-      "price":"3799000",
+      "price":3799000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/001/1511979489000_img_909541_1.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/001/1511979489000_img_909542_1.jpg",
@@ -291,7 +291,7 @@
       "des":["Kết nối 2 chế độ không dây và có dây",
       		 " Thiết kế không dây cân đối đẹp mắt với 9 nút bấm tuỳ chỉnh",
       		 " DPI lên tới 16000, tốc độ phản hồi 1000Hz"],
-      "price":"2999000",
+      "price":2999000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/002/azaudio-razer-lancehead-wireless-4.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/002/razer-lancehead-wireless-rgb-gaming-mouse-jmgaming-1708-25-f498849_1_1.jpg",
@@ -309,7 +309,7 @@
       "des":["Chuẩn kết nối: USB",
       		 "RAZER OPTO-MECHANICAL SWITCH",
       		 "Tích hợp phím đa phương tiện giúp thao tác dễ dàng"],
-      "price":"5499000",
+      "price":5499000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/003/untitled-6_1_1.jpg"
       ],
@@ -324,7 +324,7 @@
     "info":{
       "des":["Các phím được chiếu đèn nền riêng với công nghệ LED Aura Sync RGB",
       		 "Các phím có thể được lập trình toàn diện với chế độ ghi macro bất cứ lúc nào"],
-      "price":"4490000",
+      "price":4490000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/004/23-193-030-z01.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/004/23-193-030-z02.jpg",
@@ -342,7 +342,7 @@
 
       "des":["Trang bị chức năng sạc không dây, có thể vừa sử dụng chuột vừa sạc",
       		 "Led RGB tích hợp trên logo có thể tùy chỉnh bằng phần mềm"],
-      "price":"2999000",
+      "price":2999000,
       "images":[
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/005/1_45_19.jpg",
         "https://s3-us-west-2.amazonaws.com/ctyccc/Phukien/005/2_40_11.jpg"
