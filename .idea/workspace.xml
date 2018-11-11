@@ -1,12 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a3f6cbc-2c27-46dd-a469-22ece066d6bb" name="Default Changelist" comment="">
+    <list default="true" id="aad67be5-9414-40d8-a518-e943f6c45077" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/CCC-WebApp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/bin_www.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/product-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoviesCreateTable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MoviesLoadData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/42564198_1884894198270539_5473102032455860224_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Untitled-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner-14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/banner1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/bg-banner-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/bg-banner-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/bg-video-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/blog-10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/chuotrichkid.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/dell.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/gallery-15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/hdd1t.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/heading-pages-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/heading-pages-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/heading-pages-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/heading-pages-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/heading-pages-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/heading-pages-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-cart-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-cart-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-cart-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-cart-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-cart-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/item-cart-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/kngston.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/lap1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/maindel.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/manhinhdell.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/master-slide-08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/maume.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/may-xach-tay-laptop-asus-fx503vm-e4087t-i5-7300hq-den-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/ocung.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/pcgame.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/phimco.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/product-detail-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/product-detail-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/product-detail-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/ram4gddr4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/ramm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/shop-item-09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/ssd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/ssdintel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/thumb-item-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/thumb-item-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/thumb-item-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/workstation.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/error.pug" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.pug" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout.pug" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,193 +137,61 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="-372256289">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.45" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JavaScript" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-1433871122">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
     <session id="-1711418646">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="3" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="11" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="html" value="3430" />
-          <entry key="js" value="3916" />
-          <entry key="json" value="93" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="3430" />
-          <entry key="JSON" value="93" />
-          <entry key="JavaScript" value="3916" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="html" value="9" />
-          <entry key="jpg" value="16" />
-          <entry key="js" value="11" />
-          <entry key="json" value="12" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="9" />
-          <entry key="Image" value="16" />
-          <entry key="JSON" value="12" />
-          <entry key="JavaScript" value="11" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="1798525845">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.open.time.43" value="1" />
-          <entry key="project.open.time.51" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="html" value="1550" />
-          <entry key="js" value="1594" />
-          <entry key="json" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="1550" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="1594" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="10" />
-          <entry key="js" value="8" />
-          <entry key="json" value="2" />
-          <entry key="rnc" value="1" />
+          <entry key="js" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="10" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="8" />
-          <entry key="RNG Compact" value="1" />
+          <entry key="JavaScript" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="103" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="103" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server.js">
+        <entry file="file://$PROJECT_DIR$/CreateTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="860">
-              <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
+            <state relative-caret-position="204">
+              <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-detail.html">
+        <entry file="file://$PROJECT_DIR$/DeleteTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1036">
-              <caret line="85" column="42" lean-forward="true" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
+            <state relative-caret-position="102">
+              <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cart.html">
+        <entry file="file://$PROJECT_DIR$/LoadData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-307">
-              <caret line="142" column="68" lean-forward="true" selection-start-line="142" selection-start-column="68" selection-end-line="142" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MoviesLoadData.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MoviesCreateTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="344" column="21" lean-forward="true" selection-start-line="344" selection-start-column="21" selection-end-line="344" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deleteTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="94" column="37" lean-forward="true" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+            <state relative-caret-position="187">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -213,36 +200,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>idgiasp</find>
-      <find>class=&quot;size8 m-text18 t-center num-product&quot;</find>
-      <find>THÀNH TIỀN</find>
-      <find>price_sp_</find>
-      <find>thành</find>
-      <find>btn-num-product-up</find>
-      <find>fs-12 fa fa-plus</find>
-      <find>column-3</find>
-      <find>block2-price</find>
-      <find>column-1</find>
-      <find>vcl</find>
-      <find>num-product</find>
-      <find>block2-name</find>
-      <find>column-2</find>
-      <find>table-row</find>
-      <find>idimg</find>
-      <find>imge</find>
-      <find>btn-light</find>
-      <find>value</find>
-      <find>span</find>
-      <find>search</find>
-      <find>s-text3</find>
-      <find>value-lower</find>
-      <find>btn-addcart-product-detail</find>
-      <find>block2-btn-addcart</find>
-      <find>block2-btn-addwishlist</find>
-      <find>thêm</find>
-      <find>price_sp</find>
-      <find>aria-valuetext</find>
-      <find>o-f-hidden</find>
+      <find>console.lo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -251,15 +209,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DeletedTable.js" />
-        <option value="$PROJECT_DIR$/MoviesCreateTable.js" />
-        <option value="$PROJECT_DIR$/deleteTable.js" />
-        <option value="$PROJECT_DIR$/MoviesLoadData.js" />
-        <option value="$PROJECT_DIR$/product.html" />
-        <option value="$PROJECT_DIR$/data.json" />
         <option value="$PROJECT_DIR$/Server.js" />
-        <option value="$PROJECT_DIR$/product-detail.html" />
-        <option value="$PROJECT_DIR$/cart.html" />
+        <option value="$PROJECT_DIR$/LoadData.js" />
+        <option value="$PROJECT_DIR$/DeleteTable.js" />
+        <option value="$PROJECT_DIR$/CreateTable.js" />
       </list>
     </option>
   </component>
@@ -291,7 +244,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -303,23 +255,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="8.11.4" />
-    <property name="last_opened_file_path" value="D:/ThucHanh/webstorm/request" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\GitHub\CCCStore-WebApp" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -333,36 +275,31 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.Server.js">
-    <configuration name="cart.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CCCStore-WebApp/cart.html">
+  <component name="RunManager" selected="Node.js.CreateTable.js">
+    <configuration name="CreateTable.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="CreateTable.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="MoviesCreateTable.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="MoviesCreateTable.js" working-dir="$PROJECT_DIR$">
+    <configuration name="DeleteTable.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="DeleteTable.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="MoviesLoadData.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="MoviesLoadData.js" working-dir="$PROJECT_DIR$">
+    <configuration name="LoadData.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="LoadData.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="Server.js" type="NodeJSConfigurationType" factoryName="Node.js" nameIsGenerated="true" path-to-js-file="Server.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
-    <configuration name="deleteTable.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="deleteTable.js" working-dir="$PROJECT_DIR$">
+    <configuration name="Server.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="Server.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.bin\www" />
       <item itemvalue="Node.js.Server.js" />
-      <item itemvalue="Node.js.MoviesCreateTable.js" />
-      <item itemvalue="Node.js.MoviesLoadData.js" />
-      <item itemvalue="Node.js.deleteTable.js" />
-      <item itemvalue="JavaScript Debug.cart.html" />
+      <item itemvalue="Node.js.CreateTable.js" />
+      <item itemvalue="Node.js.LoadData.js" />
+      <item itemvalue="Node.js.DeleteTable.js" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.MoviesLoadData.js" />
-        <item itemvalue="Node.js.MoviesCreateTable.js" />
-        <item itemvalue="Node.js.deleteTable.js" />
-        <item itemvalue="JavaScript Debug.cart.html" />
+        <item itemvalue="Node.js.CreateTable.js" />
+        <item itemvalue="Node.js.DeleteTable.js" />
+        <item itemvalue="Node.js.LoadData.js" />
+        <item itemvalue="Node.js.Server.js" />
       </list>
     </recent_temporary>
   </component>
@@ -371,76 +308,40 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6a3f6cbc-2c27-46dd-a469-22ece066d6bb" name="Default Changelist" comment="" />
-      <created>1540348808251</created>
+      <changelist id="aad67be5-9414-40d8-a518-e943f6c45077" name="Default Changelist" comment="" />
+      <created>1541927498213</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1540348808251</updated>
-      <workItem from="1540348852834" duration="609000" />
-      <workItem from="1540350416125" duration="144000" />
-      <workItem from="1540351619413" duration="5358000" />
-      <workItem from="1540522959615" duration="6125000" />
-      <workItem from="1540533886942" duration="399000" />
-      <workItem from="1540534313789" duration="1770000" />
-      <workItem from="1540606269671" duration="2914000" />
-      <workItem from="1540695373462" duration="4185000" />
-      <workItem from="1540703472139" duration="4930000" />
-      <workItem from="1540790614038" duration="1306000" />
-      <workItem from="1540869589806" duration="13136000" />
-      <workItem from="1540900464322" duration="3955000" />
-      <workItem from="1540961666415" duration="14355000" />
-      <workItem from="1541225575058" duration="5601000" />
-      <workItem from="1541331372157" duration="4524000" />
-      <workItem from="1541335942857" duration="11073000" />
-      <workItem from="1541413450433" duration="4875000" />
+      <updated>1541927498213</updated>
+      <workItem from="1541927508987" duration="2185000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89559000" />
+    <option name="totallyTimeSpent" value="2185000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1688988" />
+      <window_info id="npm" side_tool="true" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27580646" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32923076" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14806548" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32903227" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -449,138 +350,31 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/aws-sdk/lib/request.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DeletedTable.js" />
-    <entry file="file://$PROJECT_DIR$/public/images/banner-08.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-10.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/bg-banner-02.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-01.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-02.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-03.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-07.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-09.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-14.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/42564198_1884894198270539_5473102032455860224_n.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-11.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/blog-05.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/blog-02.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-06.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-05.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/banner-04.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data (1).json" />
-    <entry file="file://$PROJECT_DIR$/index.html" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/8.11.4/core-modules/bootstrap_node.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="611" column="2" selection-start-line="611" selection-start-column="2" selection-end-line="611" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/8.11.4/core-modules/vm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/embed.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deleteTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MoviesLoadData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MoviesCreateTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="344" column="21" lean-forward="true" selection-start-line="344" selection-start-column="21" selection-end-line="344" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="94" column="37" lean-forward="true" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product-detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1036">
-          <caret line="85" column="42" lean-forward="true" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-307">
-          <caret line="142" column="68" lean-forward="true" selection-start-line="142" selection-start-column="68" selection-end-line="142" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="860">
-          <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
+        <state relative-caret-position="187">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LoadData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleteTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
         </state>
       </provider>
     </entry>
