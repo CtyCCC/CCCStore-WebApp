@@ -1,5 +1,42 @@
 [
   {
+    "idSP":"LK009",
+    "nameSP":"Ổ cứng SSD Transcend 220S 240GB",
+    "type":"linhkien",
+    "info":{
+      "des":[" Dung lượng lưu trữ: 240GB",
+        "Tốc độ đọc/ghi (Up to): 550MB/s - 450MB/s",
+        "Chuẩn kết nối: SATA III 6Gbps",
+        "Kích thước: 2.5"],
+      "price":1390000,
+      "images":[
+        "https://s3-us-west-2.amazonaws.com/ctyccc/Banner/ssd2.jpg",
+        "https://s3-us-west-2.amazonaws.com/ctyccc/Banner/ssd2.jpg",
+        "https://s3-us-west-2.amazonaws.com/ctyccc/Banner/ssd2.jpg"
+      ],
+      "quantity":100,
+      "supplier":"Transcend"
+    }
+  },
+  {
+    "idSP":"LT006",
+    "nameSP":"DELL INSPIRON 15-5000 SERIES-5579-GREY-15.6 FHD TOUCHDISPLAY W/WEBCAM-8GB M-1 TB",
+    "type":"Laptop",
+    "info":{
+      "des":["CPU: Intel Core i7-855OU",
+        "Bộ nhớ: 2x8GB,DDR4 2400,1TB 7200rpm",
+        "Đồ họa: NVIDIA GeForce GT730 2GB"],
+      "price":17090000,
+      "images":[
+        "https://s3-us-west-2.amazonaws.com/ctyccc/Banner/dell2.jpg",
+        "https://s3-us-west-2.amazonaws.com/ctyccc/Banner/dell2.jpg",
+        "https://s3-us-west-2.amazonaws.com/ctyccc/Banner/dell2.jpg"
+      ],
+      "quantity":100,
+      "supplier":"Dell"
+    }
+  },
+  {
     "idSP":"pc001",
     "nameSP":"PC HP 400 G4 MT 2XM15PA (i7-7700)",
     "type":"PC",

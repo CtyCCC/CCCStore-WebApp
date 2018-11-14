@@ -4,12 +4,14 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var AWS = require('aws-sdk');
 var url = require('url');
+var pathh = require('path');
 var port = process.env.PORT || 3000
 
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
     region: "us-west-2",
-    endpoint: "http://dynamodb.us-west-2.amazonaws.com"
+    //endpoint: "http://dynamodb.us-west-2.amazonaws.com"
+    endpoint: "http://localhost:8000"
 });
 
 AWS.config.accessKeyId="AKIAI4WFTJMWNCDGC4WA";
@@ -40,8 +42,8 @@ app.get("/",function (req,res) {
                 var banner2 = '#banner22';
                 //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
-                $(banner1 + "").attr('href',"product-detail?id=LT005");
-                $(banner2 + "").attr('href',"product-detail?id=LK004");
+                $(banner1 + "").attr('href',"product-detail?id=LT006");
+                $(banner2 + "").attr('href',"product-detail?id=LK009");
                 
                 //---Load box chứa item
                 for(var i=2;i<data.Items.length;i++)
@@ -81,7 +83,10 @@ app.get("/",function (req,res) {
 });
 
 //product/latop trang laptop
-app.get("/laptop",function (req,res) {
+app.get("/Laptop",function (req,res) {
+    var name = url.parse(req.url).pathname;
+    var kq = pathh.basename(name);
+    console.log(kq);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -91,7 +96,7 @@ app.get("/laptop",function (req,res) {
             "#type": "type",
         },
         ExpressionAttributeValues: {
-            ":t" : "Laptop"
+            ":t" : kq
         }
     };
     var index_sp = 1;
@@ -110,8 +115,8 @@ app.get("/laptop",function (req,res) {
                 var banner2 = '#banner22';
                 //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
-                $(banner1 + "").attr('href',"product-detail?id=LT005");
-                $(banner2 + "").attr('href',"product-detail?id=LK004");
+                $(banner1 + "").attr('href',"product-detail?id=LT006");
+                $(banner2 + "").attr('href',"product-detail?id=LK009");
 
                 //---Load box chứa item
                 for(var i=2;i<data.Items.length;i++)
@@ -151,7 +156,9 @@ app.get("/laptop",function (req,res) {
 });
 
 //product/pc trang pc
-app.get('/pc',function (req,res) {
+app.get('/PC',function (req,res) {
+    var name = url.parse(req.url).pathname;
+    var kq = pathh.basename(name);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -161,7 +168,7 @@ app.get('/pc',function (req,res) {
             "#type": "type",
         },
         ExpressionAttributeValues: {
-            ":t" : "PC"
+            ":t" : kq
         }
     };
     var index_sp = 1;
@@ -180,8 +187,8 @@ app.get('/pc',function (req,res) {
                 var banner2 = '#banner22';
                 //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
-                $(banner1 + "").attr('href',"product-detail?id=LT005");
-                $(banner2 + "").attr('href',"product-detail?id=LK004");
+                $(banner1 + "").attr('href',"product-detail?id=LT006");
+                $(banner2 + "").attr('href',"product-detail?id=LK009");
 
                 //---Load box chứa item
                 for(var i=2;i<data.Items.length;i++)
@@ -221,6 +228,8 @@ app.get('/pc',function (req,res) {
 });
 //product/lịnhkien trang linhkien
 app.get('/linhkien',function (req,res) {
+    var name = url.parse(req.url).pathname;
+    var kq = pathh.basename(name);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -230,7 +239,7 @@ app.get('/linhkien',function (req,res) {
             "#type": "type",
         },
         ExpressionAttributeValues: {
-            ":t" : "linhkien"
+            ":t" : kq
         }
     };
     var index_sp = 1;
@@ -249,8 +258,8 @@ app.get('/linhkien',function (req,res) {
                 var banner2 = '#banner22';
                 //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
-                $(banner1 + "").attr('href',"product-detail?id=LT005");
-                $(banner2 + "").attr('href',"product-detail?id=LK004");
+                $(banner1 + "").attr('href',"product-detail?id=LT006");
+                $(banner2 + "").attr('href',"product-detail?id=LK009");
 
                 //---Load box chứa item
                 for(var i=2;i<data.Items.length;i++)
@@ -291,6 +300,8 @@ app.get('/linhkien',function (req,res) {
 
 //product/phukien trang phukien
 app.get('/phukien',function (req,res) {
+    var name = url.parse(req.url).pathname;
+    var kq = pathh.basename(name);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -300,7 +311,7 @@ app.get('/phukien',function (req,res) {
             "#type": "type",
         },
         ExpressionAttributeValues: {
-            ":t" : "phukien"
+            ":t" : kq
         }
     };
     var index_sp = 1;
@@ -319,8 +330,8 @@ app.get('/phukien',function (req,res) {
                 var banner2 = '#banner22';
                 //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
-                $(banner1 + "").attr('href',"product-detail?id=LT005");
-                $(banner2 + "").attr('href',"product-detail?id=LK004");
+                $(banner1 + "").attr('href',"product-detail?id=LT006");
+                $(banner2 + "").attr('href',"product-detail?id=LK009");
 
                 //---Load box chứa item
                 for(var i=2;i<data.Items.length;i++)
@@ -365,9 +376,6 @@ app.get("/search",function (req,res) {
     var upper = Number(route.upper)*1000000;
     var lower = Number(route.lower)*1000000;
 
-    console.log(upper);
-    console.log(lower);
-
     var params = {
         TableName:"Product",
         ProjectionExpression:"nameSP , info",
@@ -393,8 +401,8 @@ app.get("/search",function (req,res) {
                 var banner2 = '#banner22';
                 //gán cứng tạm, sau này thêm data cho 2 cái banner,giờ làm biếng tạo s3 quá, có 3 tấm hình
                 //tại nếu có để thì phải mua đc, chứ bấm vào lại ko có gì
-                $(banner1 + "").attr('href',"product-detail?id=LT005");
-                $(banner2 + "").attr('href',"product-detail?id=LK004");
+                $(banner1 + "").attr('href',"product-detail?id=LT006");
+                $(banner2 + "").attr('href',"product-detail?id=LK009");
 
                 //---Load box chứa item
                 for(var i=2;i<data.Items.length;i++)
@@ -478,6 +486,13 @@ app.get('/product-detail',function (req,res) {
 
 app.get('/cart',function (req,res) {
     fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
+        res.writeHead(200,{'Context-Type':'text/html'});
+        res.write(data);
+        res.end();
+    });
+})
+app.get('/login',function (req,res) {
+    fs.readFile(__dirname+"/login.html",'utf8',function (err,data) {
         res.writeHead(200,{'Context-Type':'text/html'});
         res.write(data);
         res.end();
