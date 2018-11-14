@@ -32,7 +32,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+	<script src="public/javascripts/apiLogin.js"></script>
 	<div class="container">
 		<div class="container-login100" style="background-image: url('public/images/bg-01.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -75,9 +75,8 @@
 					</div>
 
 					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
-						</a>
+						
+						<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
 						<div class="g-signin2" data-onsuccess="onSignIn"></div>
 						<!--<a href="#" class="login100-social-item bg3">
@@ -114,6 +113,7 @@
 	<script src="public/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="public/js(login)/main.js"></script>
+	
 
 </body>
 </html>
