@@ -39,6 +39,72 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*[ FONT ]
 ///////////////////////////////////////////////////////////
 */
+/*FB*/
+.fb-login-button{
+    width: 50%;
+}
+/*[Form Pay]
+=================================================================*/
+.DNtxt{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #323232;
+    box-sizing: border-box;
+}
+
+
+.XacNhanbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.XacNhanbtn:hover{
+  opacity: 0.8;
+}
+.cancelbtn:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.containerDN {
+    padding: 16px;
+}
+
+.modalDN{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 100px;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.modal-content {
+    background-color: #EAEAEA;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+/*[]
+=================================================================*/
 
 @font-face {
   font-family: Montserrat-Regular;
@@ -1107,7 +1173,7 @@ li.sale-noti > a {
 
 .side-menu .sub-menu > li {
   padding-left: 12px;
-  padding-top: 
+  padding-top: 0px
 }
 
 .side-menu .sub-menu a:hover {
