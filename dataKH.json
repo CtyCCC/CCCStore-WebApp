@@ -1,0 +1,32 @@
+[
+  {
+    "userName" : "cuongvip",
+    "password" : "1",
+    "sdtKH" : 111111111,
+    "tenKH" : "Nguyễn Văn Mạnh",
+    "Email" : "cuongpro123@gmail.com",
+    "dsSP" : [
+      "LT001", "PK001","PC001"
+    ]
+  },
+  {
+    "userName" : "hungcuong",
+    "password" : "1",
+    "sdtKH" : 2222222222,
+    "tenKH" : "Trần Hùng Cường",
+    "Email" : "cuongpro111111123@gmail.com",
+    "dsSP" : [
+      "LT002", "PK003","PC003"
+    ]
+  },
+  {
+    "userName" : "chien",
+    "password" : "1",
+    "sdtKH" : 3333333333,
+    "tenKH" : "Trần Đình Chiến",
+    "Email" : "Chien@gmail.com",
+    "dsSP" : [
+      "LT003", "PK003","PC003"
+    ]
+  }
+]

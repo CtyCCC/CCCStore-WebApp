@@ -174,7 +174,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 0px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -186,6 +186,10 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
+  padding-top: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 0%;
 }
 
 

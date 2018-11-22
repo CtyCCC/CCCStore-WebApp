@@ -4,8 +4,23 @@
 	<title>Sản phẩm</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--==============Sign in google===============================================================-->
 	<meta name="google-signin-client_id" content="1082298468320-93vqqs6ngqpg7h2vkojdhdas0ir3jt8p.apps.googleusercontent.com">
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<!--==============gg Firebase==================================================================-->
+	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+	<script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDrjPHtar_vYUvJUnXL4LXWxAzsLFBLsN0",
+            authDomain: "cccstore-b951c.firebaseapp.com",
+            databaseURL: "https://cccstore-b951c.firebaseio.com",
+            projectId: "cccstore-b951c",
+            storageBucket: "cccstore-b951c.appspot.com",
+            messagingSenderId: "450553123776"
+        };
+        firebase.initializeApp(config);
+	</script>
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="public/images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -33,8 +48,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="public/stylesheets/util.css">
 	<link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
-<!--====================================Login===========================================================-->
-<!--===============================================================================================-->
+	<!--====================================Login===========================================================-->
 	<link rel="icon" type="image/png" href="public/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="public/fonts/iconic/css/material-design-iconic-font.min.css">
@@ -43,8 +57,15 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="public/css(login)/util.css">
 	<link rel="stylesheet" type="text/css" href="public/css(login)/main.css">
-<!--===============================================================================================-->
+	<!--==========================Sign up=====================================================================-->
+	<script src="public/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap(signup).css">
+	<link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap-theme.css">
+	<script src="public/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="public/vendor/jquery/jquery.validate.js"></script>
 
+	<script src="public/javascripts/vadidateFormDangky.js"></script>
 </head>
 <body class="animsition">
 
@@ -117,12 +138,63 @@
 		
 	</header>
 
+	<!--Dang ký-->
+	<div class="modalDN" id="dangky">
+		<div class=" well containerDN">
+			<form id="kt" class="form-horizontal" method="get" action="signup" >
+
+				<center><legend>Điền các thông tin của bạn !! </legend></center>
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable">Tài khoản: </label>
+					<div class="col-md-8"><input name="txtuser" class="form-control" type="text" autofocus=""></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable">Mật khẩu: </label>
+					<div class="col-md-8"><input id="pass" name="txtpass" class="form-control" type="password"></div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable">Nhập lại mật khẩu: </label>
+					<div class="col-md-8"><input name="txtrepass" class="form-control" type="password"></div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable">Tên: </label>
+					<div class="col-md-8"><input name="txtten" class="form-control" type="text"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable">SDT: </label>
+					<div class="col-md-8"><input name="txtsdt" class="form-control" type="text"></div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable">Email: </label>
+					<div class="col-md-8"><input name="txtmail" class="form-control" type="email"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-lable"></label>
+					<div class="col-md-4">
+						<input type="submit" name="" value="Đăng ký" class="btn btn-info btn-block">
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
 	<!--Dang Nhap-->
 	<div class="modalDN" id="dangnhap">
 		<div class="containerDN">
-			<div class="container-login100" style="background-image: url('public/images/bg-01.jpg');">
+			<div class="container-login100">
 				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-					<form class="login100-form validate-form">
+					<form action="login" class="login100-form validate-form">
 						<span class="login100-form-title p-b-49">
 							Login
 						</span>
@@ -140,6 +212,7 @@
 						</div>
 
 						<div class="text-right p-t-8 p-b-31">
+							<span id="thongbao" style="color: red; text-align: left">aaa</span>
 							<a href="#">
 								Quên mật khẩu?
 							</a>
@@ -155,22 +228,20 @@
 						</div>
 
 						<div class="txt1 text-center p-t-54 p-b-20">
-											<span>
-												Đăng nhập với
-											</span>
+							<span>
+								Đăng nhập với
+							</span>
 						</div>
 
 						<div class="flex-c-m">
 
-							<div class="fb-login-button" data-max-rows="0" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+							<div class="fb-login-button" data-max-rows="0" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-							<div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<div class="g-signin2" data-width="225" data-height="27" data-longtitle="false"></div>
 						</div>
 
 						<div class="txt1 text-center p-t-54 p-b-20">
-							<a href="#">
-								Đăng ký
-							</a>
+							<button type="button" onclick="dangky()">Đăng ký</button>
 						</div>
 
 					</form>
@@ -178,15 +249,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- Title Page -->
-	<!--<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(public/images/banner-04.jpg);">
-		<h2 class="l-text2 t-center">
-			CCC Store
-		</h2>
-		<p class="m-text13 t-center">
-			Linh kiện chính hãng, giá tốt nhất
-		</p>
-	</section>-->
+
 	<!-- Slide1 -->
 	<section class="slide1">
 		<div class="wrap-slick1">
@@ -292,7 +355,7 @@
 							</div>
 
 							<div class="flex-sb-m flex-w p-t-16">
-								<form action="/search">
+								<form action="/search" id="formtimkiem">
 								<div class="w-size11">
 									<input type="text" id="lower" name="lower" hidden="true" value="0">
 									<input type="text" id="upper" name="upper" hidden="true" value="10000000">
@@ -373,8 +436,6 @@
 		</div>
 	</footer>
 
-
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -385,8 +446,6 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
-
-
 
 <!--===============================================================================================-->
 	<script type="text/javascript" src="public/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -457,6 +516,14 @@
 			$('#upper').attr('value',up);
 			$('#lower').attr('value',low);
         }
+        function dangky() {
+            //ẩn form đăng nhập
+            var modal = document.getElementById('dangnhap');
+			modal.style.display = "none";
+
+            //hiện form đkí
+            document.getElementById('dangky').style.display='block';
+        }
 	</script>
 
 <!--===============================================================================================-->
@@ -488,6 +555,10 @@
             var modal = document.getElementById('dangnhap');
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+            var modal2 = document.getElementById('dangky');
+            if (event.target == modal2) {
+                modal2.style.display = "none";
             }
         }
 	</script>

@@ -190,7 +190,7 @@
 					<!--Dang Nhap-->
 					<div class="modalDN" id="dangnhap">
 						<div class="containerDN">
-							<div class="container-login100" style="background-image: url('public/images/bg-01.jpg');">
+							<div class="container-login100">
 								<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 									<form class="login100-form validate-form">
 										<span class="login100-form-title p-b-49">
@@ -232,9 +232,9 @@
 
 										<div class="flex-c-m">
 
-											<div class="fb-login-button" data-max-rows="0" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+											<div class="fb-login-button" data-max-rows="0" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-											<div class="g-signin2" data-onsuccess="onSignIn"></div>
+											<div class="g-signin2" data-width="225" data-height="27" data-longtitle="false"></div>
 										</div>
 
 										<div class="txt1 text-center p-t-54 p-b-20">
@@ -253,8 +253,6 @@
 		</div>
 	</section>
 
-
-
 	<!-- Footer -->
 	<footer class="bg6 p-t-10 p-b-10 p-l-10 p-r-10">
 		<div class="t-center p-l-15 p-r-15">
@@ -263,8 +261,6 @@
 			</div>
 		</div>
 	</footer>
-
-
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
@@ -276,7 +272,6 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
-
 
 
 <!--===============================================================================================-->
@@ -307,7 +302,7 @@
 		}
         for (var i=0, sl=localStorage.length; i<sl; ++i) {
 
-            <!--Khởi tạo Row chứa các mặt hàng-->
+            //tạo thêm row
             if (count != 1)
 			{
                 var Newrow = $('#rowstart').clone();
@@ -319,7 +314,6 @@
                 Newrow.find('#sl_sp_1').attr('id','sl_sp_'+count);
                 Newrow.appendTo('.table-shopping-cart');
             }
-
             var Key = localStorage.key(i);
             var gia = parseInt(JSON.parse(localStorage.getItem(Key)).price);
             document.getElementById('cart-noti').innerHTML=localStorage.length;
@@ -331,9 +325,9 @@
 			document.getElementById('tt_sp_'+count).innerHTML = tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
 			count++;
         }
-
 		tinh_tong_tien();
 
+		//nút tăng số lượng
         $('.btn-num-product-up').each(function(){
                 $(this).on('click',function () {
                     var key = $(this).parent().parent().parent().find('.column-2').html();
@@ -351,6 +345,8 @@
                     tinh_tong_tien();
                 })
         });
+
+        //nút giảm số lượng
         $('.btn-num-product-down').each(function(){
             $(this).on('click',function () {
                 var key = $(this).parent().parent().parent().find('.column-2').html();
@@ -359,6 +355,7 @@
                         let image = JSON.parse(localStorage.getItem(key)).image;
                         let price = JSON.parse(localStorage.getItem(key)).price;
                         let soluong = JSON.parse(localStorage.getItem(key)).sl-1;
+                        //nếu nhỏ hơn 1 thì k cho giảm nữa, để là 1
                         if (soluong<1)
                         	soluong=1;
                         var ob =  {'name': key, 'image': image, 'price':price, 'sl':soluong };
@@ -370,6 +367,8 @@
                 tinh_tong_tien();
             })
         });
+
+        //nút xóa item trong giỏ
         $('.btn-light').each(function(){
             $(this).on('click',function () {
                 var key = $(this).parent().find('.column-2').html();
@@ -378,6 +377,7 @@
                 tinh_tong_tien();
             })
         });
+        //tính tổng tiền
         function tinh_tong_tien() {
             var ttt = 0;
             for (var i=0, sl=localStorage.length; i<sl; ++i){
@@ -388,7 +388,7 @@
             }
             document.getElementById('tongcart').innerHTML= ttt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
         }
-
+		//click ra ngoài thì ẩn form đăng nhập
         window.onclick = function(event) {
             var modal = document.getElementById('dangnhap');
             if (event.target == modal) {

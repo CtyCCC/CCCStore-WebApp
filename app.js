@@ -18,6 +18,7 @@ AWS.config.accessKeyId="AKIAI4WFTJMWNCDGC4WA";
 AWS.config.secretAccessKey="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";
 
 var docClient = new AWS.DynamoDB.DocumentClient();
+var login = false;
 
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
@@ -32,7 +33,7 @@ app.get("/",function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan succeeded.");
+            console.log("Scan product succeeded.");
             fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -155,7 +156,7 @@ app.get("/Laptop",function (req,res) {
     }
 });
 
-//product/pc trang pc
+//    /pc trang pc
 app.get('/PC',function (req,res) {
     var name = url.parse(req.url).pathname;
     var kq = pathh.basename(name);
@@ -181,6 +182,8 @@ app.get('/PC',function (req,res) {
             fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
+                $('#formtimkiem').attr('action',"PC");
+
 
                 //cái này cho 2 cái banner
                 var banner1 = '#banner11';
@@ -298,7 +301,7 @@ app.get('/linhkien',function (req,res) {
     }
 });
 
-//product/phukien trang phukien
+// /phukien trang phukien
 app.get('/phukien',function (req,res) {
     var name = url.parse(req.url).pathname;
     var kq = pathh.basename(name);
@@ -483,6 +486,57 @@ app.get('/product-detail',function (req,res) {
     });
 })
 
+app.get('/login',function (req,res) {
+
+    var root = url.parse(req.url, true);
+    var query = root.query;
+    var params={TableName:"Customers"};
+    docClient.scan(params, onScan);
+    function onScan(err, data) {
+        if (err) {
+            console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Scan customers succeeded.");
+            data.Items.forEach(function (cus) {
+               if (cus.userName == query.username && cus.password == query.pass){
+                   login=true;
+                   console.log("Đã đăng nhập vào user: " +query.username);
+               }
+            });
+            if (login==false)
+                console.log('Sai tài khoản hoặc mật khẩu!!!')
+
+            if (typeof data.LastEvaluatedKey != "undefined") {
+                console.log("Scanned all data...");
+                params.ExclusiveStartKey = data.LastEvaluatedKey;
+                docClient.scan(params, onScan);
+            }
+        }
+    };
+});
+
+app.get('/signup',function (req,res) {
+    var root = url.parse(req.url, true);
+    var query = root.query;
+    var params = {
+        TableName: "Customers",
+        Item: {
+            "userName" : query.txtuser,
+            "password" : query.txtpass,
+            "sdtKH": query.txtsdt,
+            "tenKH" : query.txtten,
+            "Email" : query.txtmail
+        }
+    };
+    docClient.put(params, function(err, data) {
+        if (err) {
+            console.error("Unable to add movie . Error JSON:",JSON.stringify(err,null,2));
+        } else {
+            console.log("Thêm KH thành cmn công");
+            login=true;
+        }
+    });
+});
 
 app.get('/cart',function (req,res) {
     fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
@@ -490,14 +544,7 @@ app.get('/cart',function (req,res) {
         res.write(data);
         res.end();
     });
-})
-app.get('/login',function (req,res) {
-    fs.readFile(__dirname+"/login.html",'utf8',function (err,data) {
-        res.writeHead(200,{'Context-Type':'text/html'});
-        res.write(data);
-        res.end();
-    });
-})
+});
 
 var server = app.listen(port,function () {
     console.log("http://127.0.0.1:"+port+"/");
