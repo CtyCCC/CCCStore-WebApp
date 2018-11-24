@@ -42,7 +42,15 @@
 	<link rel="stylesheet" type="text/css" href="public/css(login)/util.css">
 	<link rel="stylesheet" type="text/css" href="public/css(login)/main.css">
 <!--===============================================================================================-->
+	<!--==========================Sign up=====================================================================-->
+	<script src="public/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="public/vendor/jquery/jquery.validate.js"></script>
+	<script src="public/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap(signup).css">
+	<link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap-theme.css">
 	<script src="public/javascripts/apiLogin.js"></script>
+	<script src="public/javascripts/vadidateFormDangky.js"></script>
 </head>
 <body class="animsition">
 	
@@ -188,8 +196,60 @@
 					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 pay" onclick="document.getElementById('dangnhap').style.display='block'">
 						Tiến hành đặt hàng
 					</button>
+
+					<!--Dang ký-->
+					<div class="modalDN" id="dangky" style="display: none;">
+						<div class=" well containerDN">
+							<form id="kt" class="form-horizontal" method="get" action="signup" >
+
+								<center><legend>Điền các thông tin của bạn !! </legend></center>
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable">Tài khoản: </label>
+									<div class="col-md-8"><input name="txtuser" class="form-control" type="text" autofocus=""></div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable">Mật khẩu: </label>
+									<div class="col-md-8"><input id="pass" name="txtpass" class="form-control" type="password"></div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable">Nhập lại mật khẩu: </label>
+									<div class="col-md-8"><input name="txtrepass" class="form-control" type="password"></div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable">Tên: </label>
+									<div class="col-md-8"><input name="txtten" class="form-control" type="text"></div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable">SDT: </label>
+									<div class="col-md-8"><input name="txtsdt" class="form-control" type="text"></div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable">Email: </label>
+									<div class="col-md-8"><input name="txtmail" class="form-control" type="email"></div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-lable"></label>
+									<div class="col-md-4">
+										<input type="submit" name="" value="Đăng ký" class="btn btn-info btn-block">
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+
 					<!--Dang Nhap-->
-					<div class="modalDN" id="dangnhap">
+					<div class="modalDN" id="dangnhap" style="display: none;">
 						<div class="containerDN">
 							<div class="container-login100">
 								<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -239,9 +299,7 @@
 										</div>
 
 										<div class="txt1 text-center p-t-54 p-b-20">
-											<a href="#">
-												Đăng ký
-											</a>
+											<button type="button" onclick="dangky()">Đăng ký</button>
 										</div>
 
 									</form>
@@ -395,6 +453,18 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+            var modal2 = document.getElementById('dangky');
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+        }
+        function dangky() {
+            //ẩn form đăng nhập
+            var modal = document.getElementById('dangnhap');
+            modal.style.display = "none";
+
+            //hiện form đkí
+            document.getElementById('dangky').style.display='block';
         }
     </script>
 <!--===============================================================================================-->

@@ -19,6 +19,11 @@ AWS.config.secretAccessKey="vvdbbi9xqkuoNDFNyRcf/UPuqmQRDkt1pSRpRilD";
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 var login = false;
+var dem = 1;
+var tenKH ="";
+var sdtKH = "";
+var emailKH = "";
+var user = "";
 
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
@@ -38,6 +43,17 @@ app.get("/",function (req,res) {
 
                 var $ = cheerio.load(data1);
 
+                if(login==false && dem>1){
+                    $('#dangnhap').css('display', 'block');
+                    $('#thongbao').text('Sai tài khoản hoặc mật khẩu !!!')
+                }
+                if (login==true){
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#dangnhapbtn').attr('hidden', 'true');
+                    $('#tenKH').text(tenKH);
+                    $('#sdtKH').text(sdtKH);
+                    $('#emailKH').text(emailKH);
+                }
                 //cái này cho 2 cái banner
                 var banner1 = '#banner11';
                 var banner2 = '#banner22';
@@ -500,12 +516,19 @@ app.get('/login',function (req,res) {
             data.Items.forEach(function (cus) {
                if (cus.userName == query.username && cus.password == query.pass){
                    login=true;
+                   res.redirect('/');
+                   tenKH = cus.tenKH;
+                   sdtKH = cus.sdtKH;
+                   emailKH = cus.Email;
+                   user = cus.userName;
                    console.log("Đã đăng nhập vào user: " +query.username);
                }
             });
-            if (login==false)
-                console.log('Sai tài khoản hoặc mật khẩu!!!')
-
+            if (login==false){
+                dem=dem+1;
+                console.log('Sai tài khoản hoặc mật khẩu!!!');
+                res.redirect('/');
+            }
             if (typeof data.LastEvaluatedKey != "undefined") {
                 console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
@@ -540,10 +563,41 @@ app.get('/signup',function (req,res) {
 
 app.get('/cart',function (req,res) {
     fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
+        //nếu đã đăng nhập, load giỏ hàng cũ từ db
+        if (login == true){
+            var params = {
+                TableName : "Customers",
+                KeyConditionExpression: "#user = :user",
+                ExpressionAttributeNames:{
+                    "#user": "userName"
+                },
+                ExpressionAttributeValues: {
+                    ":user": user
+                }
+            };
+            docClient.query(params, function(err, data) {
+                if (err) {
+                    console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                } else {
+                    data.Items.forEach(function(item) {
+                        console.log("Tên: " +item.tenKH + "   SDT: " +item.sdtKH + "   Email: "+item.Email)
+                    });
+                }
+            });
+        }
         res.writeHead(200,{'Context-Type':'text/html'});
         res.write(data);
         res.end();
     });
+});
+app.get('/logout',function (req,res) {
+    login = false;
+    dem = 1;
+    tenKH ="";
+    sdtKH = "";
+    emailKH = "";
+    user = "";
+    res.redirect('/');
 });
 
 var server = app.listen(port,function () {

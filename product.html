@@ -7,20 +7,6 @@
 	<!--==============Sign in google===============================================================-->
 	<meta name="google-signin-client_id" content="1082298468320-93vqqs6ngqpg7h2vkojdhdas0ir3jt8p.apps.googleusercontent.com">
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<!--==============gg Firebase==================================================================-->
-	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-	<script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDrjPHtar_vYUvJUnXL4LXWxAzsLFBLsN0",
-            authDomain: "cccstore-b951c.firebaseapp.com",
-            databaseURL: "https://cccstore-b951c.firebaseio.com",
-            projectId: "cccstore-b951c",
-            storageBucket: "cccstore-b951c.appspot.com",
-            messagingSenderId: "450553123776"
-        };
-        firebase.initializeApp(config);
-	</script>
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="public/images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -64,8 +50,6 @@
 	<script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap(signup).css">
 	<link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap-theme.css">
-
-
 	<script src="public/javascripts/vadidateFormDangky.js"></script>
 </head>
 <body class="animsition">
@@ -96,7 +80,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="/" class="logo">
-					<img src="public/images/icons/logoo.png" alt="IMG-LOGO">
+					<img src="public/images/icons/lg.png">
 				</a>
 
 				<!-- Menu -->
@@ -119,8 +103,49 @@
 				</div>
 
 				<!-- Header Icon -->
-				<div class="header-icons">
-					<button class="header-wrapicon1 dis-block" onclick="document.getElementById('dangnhap').style.display='block'">
+				<div  class="header-icons">
+					<div hidden="" id="thongtinKH" class="header-wrapicon2">
+						<img src="public/images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<!-- Header cart noti -->
+						<div class="header-cart header-dropdown">
+							<ul class="header-cart-wrapitem">
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a id="tenKH" class="header-cart-item-name font-weight-bold text-danger">
+											Nguyễn Văn Mạnh Cường
+										</a>
+									</div>
+								</li>
+
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a id="emailKH" class="header-cart-item-name">
+											cuongfpi1313131@gmail.com
+										</a>
+									</div>
+								</li>
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a id="sdtKH" class="header-cart-item-name">
+											0987767216
+										</a>
+									</div>
+								</li>
+							</ul>
+
+							<div class="header-cart-buttons">
+								<div class="header-cart-wrapbtn">
+									<!-- Button -->
+									<a href="logout" class="flex-c-m size1 bg1 bo-rad-15 hov1 s-text1 trans-0-4">
+										Đăng xuất
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<button id="dangnhapbtn" class="header-wrapicon1 dis-block" onclick="document.getElementById('dangnhap').style.display='block'">
 						<img src="public/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</button>
 
@@ -129,9 +154,6 @@
 					<div class="header-wrapicon2">
 						<a href="cart"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
 						<span class="header-icons-noti" id="cart-noti">0</span>
-
-						<!-- Header cart noti -->
-
 					</div>
 				</div>
 			</div>
@@ -140,7 +162,7 @@
 	</header>
 
 	<!--Dang ký-->
-	<div class="modalDN" id="dangky">
+	<div class="modalDN" id="dangky" style="display: none;">
 		<div class=" well containerDN">
 			<form id="kt" class="form-horizontal" method="get" action="signup" >
 
@@ -191,7 +213,7 @@
 	</div>
 
 	<!--Dang Nhap-->
-	<div class="modalDN" id="dangnhap">
+	<div class="modalDN" id="dangnhap" style="display: none;">
 		<div class="containerDN">
 			<div class="container-login100">
 				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -213,7 +235,7 @@
 						</div>
 
 						<div class="text-right p-t-8 p-b-31">
-							<span id="thongbao" style="color: red; text-align: left"></span>
+							<span id="thongbao" style="color: red; float: left"></span>
 							<a href="#">
 								Quên mật khẩu?
 							</a>
@@ -236,7 +258,8 @@
 
 						<div class="flex-c-m">
 
-							<div class="fb-login-button" data-max-rows="0" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+							<div class="fb-login-button" data-max-rows="0" data-size="medium" data-button-type="login_with"
+								 data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
 							<div class="g-signin2" data-width="225" data-height="27" data-longtitle="false"></div>
 						</div>
