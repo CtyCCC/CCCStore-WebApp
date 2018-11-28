@@ -4,8 +4,25 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var AWS = require('aws-sdk');
 var url = require('url');
-var pathh = require('path');
+var path = require('path');
+var session = require('express-session');
+var passport = require('passport');
+var bodyParser = require('body-parser');
+var LocalStrategy = require('passport-local').Strategy
 var port = process.env.PORT || 3000
+
+/*Đọc dữ liệu root chuyển thành json (t cũng đéo biết :)) )*/
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// maxAge chỉnh thời gian tồn tại của cookie tính theo milisecond
+app.use(session({
+    secret : "secret",
+    cookie:{maxAge:1000*60*5}
+}))
+// 2 middleware hỗ trợ cho cái passport chạy
+app.use(passport.initialize());
+app.use(passport.session());
 
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
@@ -18,16 +35,85 @@ AWS.config.accessKeyId="AKIAI4WFTJMWNCDGC4WA";
 AWS.config.secretAccessKey="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";
 
 var docClient = new AWS.DynamoDB.DocumentClient();
-var login = false;
-var dem = 1;
-var tenKH ="";
-var sdtKH = "";
-var emailKH = "";
-var user = "";
+
+/*Xử lý việc đăng nhập trả kết quả cho thằng passport.authenticate*/
+passport.use(new LocalStrategy(
+    function (username,password,done) {
+        var params = {
+            TableName: "Customers",
+            ProjectionExpression: "#user ,#pass",
+            FilterExpression: "#user = :u and #pass= :p",
+            ExpressionAttributeNames: {
+                "#user": "userName",
+                "#pass":"password"
+            },
+            ExpressionAttributeValues: {
+                ":u" : username,
+                ":p" : password
+            }
+        };
+        docClient.scan(params,function (err,data) {
+            if(err)
+                console.log('loi tim',err);
+            else
+            {
+                var record = data.Items;
+                if(record.length>0)
+                {
+                    return done(null,record[0]);
+                }
+                else
+                {
+                    return done(null,false);
+                }
+            }
+        })
+    }
+))
+
+//Tạo sesion cái idsession thì phải
+passport.serializeUser(function(user, done) {
+    done(null, user.userName);
+});
+
+/*Hiểu theo kiểu đây là chỗ tạo thằng req.user để lấy dữ liệu ấy
+và thằng này dính với thằng trên
+(thực ra username ở đây là iduser như éo có nên lấy username luôn)
+* */
+passport.deserializeUser(function(username, done) {
+    var params = {
+        TableName: "Customers",
+        ProjectionExpression: "#user,password,Email,sdtKH,tenKH",
+        FilterExpression: "#user = :u",
+        ExpressionAttributeNames: {
+            "#user": "userName",
+        },
+        ExpressionAttributeValues: {
+            ":u" : username,
+        }
+    };
+    docClient.scan(params,function (err,data) {
+        if(err)
+            console.log('loi session:',err);
+        else
+        {
+            var record = data.Items;
+            if(record.length>0)
+            {
+                return done(null,record[0]);
+            }
+            else
+            {
+                return done(null,false);
+            }
+
+        }
+    })
+});
+
 
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
-
 
 ////Get trang product//////
 app.get("/",function (req,res) {
@@ -42,14 +128,6 @@ app.get("/",function (req,res) {
             fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
-
-                if (login==true){
-                    $('#thongtinKH').removeAttr('hidden');
-                    $('#btndangnhap').attr('hidden', 'true');
-                    $('#tenKH').text(tenKH);
-                    $('#sdtKH').text(sdtKH);
-                    $('#emailKH').text(emailKH);
-                }
                 //cái này cho 2 cái banner
                 var banner1 = '#banner11';
                 var banner2 = '#banner22';
@@ -82,6 +160,15 @@ app.get("/",function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -98,7 +185,7 @@ app.get("/",function (req,res) {
 //product/latop trang laptop
 app.get("/Laptop",function (req,res) {
     var name = url.parse(req.url).pathname;
-    var kq = pathh.basename(name);
+    var kq = path.basename(name);
     console.log(kq);
     var params = {
         TableName: "Product",
@@ -155,6 +242,15 @@ app.get("/Laptop",function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -171,7 +267,7 @@ app.get("/Laptop",function (req,res) {
 //    /pc trang pc
 app.get('/PC',function (req,res) {
     var name = url.parse(req.url).pathname;
-    var kq = pathh.basename(name);
+    var kq = path.basename(name);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -229,6 +325,15 @@ app.get('/PC',function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -244,7 +349,7 @@ app.get('/PC',function (req,res) {
 //product/lịnhkien trang linhkien
 app.get('/linhkien',function (req,res) {
     var name = url.parse(req.url).pathname;
-    var kq = pathh.basename(name);
+    var kq = path.basename(name);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -300,6 +405,15 @@ app.get('/linhkien',function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -316,7 +430,7 @@ app.get('/linhkien',function (req,res) {
 // /phukien trang phukien
 app.get('/phukien',function (req,res) {
     var name = url.parse(req.url).pathname;
-    var kq = pathh.basename(name);
+    var kq = path.basename(name);
     var params = {
         TableName: "Product",
         ProjectionExpression: "nameSP, info",
@@ -372,6 +486,15 @@ app.get('/phukien',function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -443,6 +566,15 @@ app.get("/search",function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -490,6 +622,15 @@ app.get('/product-detail',function (req,res) {
                     $('#img_3_2').attr('src',item.info.images[2]);
                     $('#des').text(item.info.des);
                 });
+                //kiểm tra đã đăng nhập chưa
+                if(req.isAuthenticated())
+                {
+                    $('#thongtinKH').removeAttr('hidden');
+                    $('#btndangnhap').attr('hidden','');
+                    $('#tenKH').text(req.user.tenKH);
+                    $('#emailKH').text(req.user.Email);
+                    $('#sdtKH').text(req.user.sdtKH);
+                }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
                 res.end();
@@ -497,47 +638,16 @@ app.get('/product-detail',function (req,res) {
         }
     });
 })
-
-app.get('/loginfunction', function(req, res){
-    var root = url.parse(req.url, true);
-    var query = root.query;
-
-    var params={TableName:"Customers"};
-
-    docClient.scan(params, onScan);
-    function onScan(err, data) {
-        if (err) {
-            console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
-        } else {
-            console.log("Scan customers succeeded.");
-            data.Items.forEach(function (cus) {
-                if (cus.userName == query.username && cus.password == query.pass) {
-                    login = true;
-                    console.log("Đã đăng nhập vào user: " + query.username);
-                    tenKH = cus.tenKH;
-                    sdtKH = cus.sdtKH;
-                    emailKH = cus.Email;
-                    user = cus.userName;
-                    res.redirect('/');
-                }
-            });
-        }
-        if (login==false)
-            res.redirect('/login');
-    };
-});
-
-
-//chỉ để gọi login.html, ko xử lý trên đây
-app.get('/login',function (req,res) {
-
-    fs.readFile(__dirname+"/login.html",'utf8',function (err,data) {
-
+// get post nó của route('/login')
+app.route('/login')
+    .get(function (req,res) {
+        fs.readFile(__dirname+"/login.html",'utf8',function (err,data) {
         res.writeHead(200,{'Context-Type':'text/html'});
         res.write(data);
         res.end();
-    });
-});
+    })
+})
+    .post(passport.authenticate('local',{successRedirect: '/',failureRedirect:'/login'}))
 
 app.get('/signup',function (req,res) {
     var root = url.parse(req.url, true);
@@ -557,49 +667,41 @@ app.get('/signup',function (req,res) {
             console.error("Ko thêm đc, lỗi gì đó . Error JSON:",JSON.stringify(err,null,2));
         } else {
             console.log("Thêm KH thành cmn công");
-            login==true;
-            //đăng nhập
-            //res.redirect('/loginfunction?username='+query.txtuser+'?pass='+query.txtpass);
+            var user ={
+                "userName" : query.txtuser,
+                "password" : query.txtpass,
+                "sdtKH": query.txtsdt,
+                "tenKH" : query.txtten,
+                "Email" : query.txtmail
+            }
+            req.login(user,function (err) {
+                if(err)
+                    return err;
+                else
+                    return res.redirect('/');
+            })
         }
     });
 });
 
 app.get('/cart',function (req,res) {
     fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
-        //nếu đã đăng nhập, load giỏ hàng cũ từ db
-        if (login == true){
-            var params = {
-                TableName : "Customers",
-                KeyConditionExpression: "#user = :user",
-                ExpressionAttributeNames:{
-                    "#user": "userName"
-                },
-                ExpressionAttributeValues: {
-                    ":user": user
-                }
-            };
-            docClient.query(params, function(err, data) {
-                if (err) {
-                    console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-                } else {
-                    data.Items.forEach(function(item) {
-                        console.log("Tên: " +item.tenKH + "   SDT: " +item.sdtKH + "   Email: "+item.Email)
-                    });
-                }
-            });
+        var $ =cheerio.load(data);
+        if(req.isAuthenticated())
+        {
+            $('#thongtinKH').removeAttr('hidden');
+            $('#btndangnhap').attr('hidden','');
+            $('#tenKH').text(req.user.tenKH);
+            $('#emailKH').text(req.user.Email);
+            $('#sdtKH').text(req.user.sdtKH);
         }
         res.writeHead(200,{'Context-Type':'text/html'});
-        res.write(data);
+        res.write($.html());
         res.end();
     });
 });
 app.get('/logout',function (req,res) {
-    login = false;
-    dem = 1;
-    tenKH ="";
-    sdtKH = "";
-    emailKH = "";
-    user = "";
+    req.logout();
     res.redirect('/');
 });
 
