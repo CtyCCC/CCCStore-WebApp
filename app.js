@@ -43,13 +43,9 @@ app.get("/",function (req,res) {
 
                 var $ = cheerio.load(data1);
 
-                if(login==false && dem>1){
-                    $('#dangnhap').css('display', 'block');
-                    $('#thongbao').text('Sai tài khoản hoặc mật khẩu !!!')
-                }
                 if (login==true){
                     $('#thongtinKH').removeAttr('hidden');
-                    $('#dangnhapbtn').attr('hidden', 'true');
+                    $('#btndangnhap').attr('hidden', 'true');
                     $('#tenKH').text(tenKH);
                     $('#sdtKH').text(sdtKH);
                     $('#emailKH').text(emailKH);
@@ -502,11 +498,12 @@ app.get('/product-detail',function (req,res) {
     });
 })
 
-app.get('/login',function (req,res) {
-
+app.get('/loginfunction', function(req, res){
     var root = url.parse(req.url, true);
     var query = root.query;
+
     var params={TableName:"Customers"};
+
     docClient.scan(params, onScan);
     function onScan(err, data) {
         if (err) {
@@ -514,28 +511,32 @@ app.get('/login',function (req,res) {
         } else {
             console.log("Scan customers succeeded.");
             data.Items.forEach(function (cus) {
-               if (cus.userName == query.username && cus.password == query.pass){
-                   login=true;
-                   res.redirect('/');
-                   tenKH = cus.tenKH;
-                   sdtKH = cus.sdtKH;
-                   emailKH = cus.Email;
-                   user = cus.userName;
-                   console.log("Đã đăng nhập vào user: " +query.username);
-               }
+                if (cus.userName == query.username && cus.password == query.pass) {
+                    login = true;
+                    console.log("Đã đăng nhập vào user: " + query.username);
+                    tenKH = cus.tenKH;
+                    sdtKH = cus.sdtKH;
+                    emailKH = cus.Email;
+                    user = cus.userName;
+                    res.redirect('/');
+                }
             });
-            if (login==false){
-                dem=dem+1;
-                console.log('Sai tài khoản hoặc mật khẩu!!!');
-                res.redirect('/');
-            }
-            if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
-                params.ExclusiveStartKey = data.LastEvaluatedKey;
-                docClient.scan(params, onScan);
-            }
         }
+        if (login==false)
+            res.redirect('/login');
     };
+});
+
+
+//chỉ để gọi login.html, ko xử lý trên đây
+app.get('/login',function (req,res) {
+
+    fs.readFile(__dirname+"/login.html",'utf8',function (err,data) {
+
+        res.writeHead(200,{'Context-Type':'text/html'});
+        res.write(data);
+        res.end();
+    });
 });
 
 app.get('/signup',function (req,res) {
@@ -553,10 +554,12 @@ app.get('/signup',function (req,res) {
     };
     docClient.put(params, function(err, data) {
         if (err) {
-            console.error("Unable to add movie . Error JSON:",JSON.stringify(err,null,2));
+            console.error("Ko thêm đc, lỗi gì đó . Error JSON:",JSON.stringify(err,null,2));
         } else {
             console.log("Thêm KH thành cmn công");
-            login=true;
+            login==true;
+            //đăng nhập
+            //res.redirect('/loginfunction?username='+query.txtuser+'?pass='+query.txtpass);
         }
     });
 });
