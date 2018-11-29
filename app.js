@@ -8,8 +8,8 @@ var path = require('path');
 var session = require('express-session');
 var passport = require('passport');
 var bodyParser = require('body-parser');
-var LocalStrategy = require('passport-local').Strategy
-var port = process.env.PORT || 3000
+var LocalStrategy = require('passport-local').Strategy;
+var port = process.env.PORT || 3000;
 
 /*Đọc dữ liệu root chuyển thành json (t cũng đéo biết :)) )*/
 app.use(bodyParser.json());
@@ -42,7 +42,7 @@ passport.use(new LocalStrategy(
         var params = {
             TableName: "Customers",
             ProjectionExpression: "#user ,#pass",
-            FilterExpression: "#user = :u and #pass= :p",
+            KeyConditionExpression: "#user = :u and #pass= :p",
             ExpressionAttributeNames: {
                 "#user": "userName",
                 "#pass":"password"
@@ -52,7 +52,7 @@ passport.use(new LocalStrategy(
                 ":p" : password
             }
         };
-        docClient.scan(params,function (err,data) {
+        docClient.query(params,function (err,data) {
             if(err)
                 console.log('loi tim',err);
             else
@@ -67,11 +67,12 @@ passport.use(new LocalStrategy(
                     return done(null,false);
                 }
             }
+
         })
     }
 ))
 
-//Tạo sesion cái idsession thì phải
+//Hàm được dùng để lưu thông tin user vào session nếu xác thực thành công
 passport.serializeUser(function(user, done) {
     done(null, user.userName);
 });
@@ -80,11 +81,12 @@ passport.serializeUser(function(user, done) {
 và thằng này dính với thằng trên
 (thực ra username ở đây là iduser như éo có nên lấy username luôn)
 * */
+//Hàm được gọi bởi passport.session, lấy dữ liệu user dựa vào thông tin lưu trên session và gắn vào req.user
 passport.deserializeUser(function(username, done) {
     var params = {
         TableName: "Customers",
         ProjectionExpression: "#user,password,Email,sdtKH,tenKH",
-        FilterExpression: "#user = :u",
+        KeyConditionExpression: "#user = :u",
         ExpressionAttributeNames: {
             "#user": "userName",
         },
@@ -92,7 +94,7 @@ passport.deserializeUser(function(username, done) {
             ":u" : username,
         }
     };
-    docClient.scan(params,function (err,data) {
+    docClient.query(params,function (err,data) {
         if(err)
             console.log('loi session:',err);
         else
@@ -186,10 +188,9 @@ app.get("/",function (req,res) {
 app.get("/Laptop",function (req,res) {
     var name = url.parse(req.url).pathname;
     var kq = path.basename(name);
-    console.log(kq);
     var params = {
         TableName: "Product",
-        ProjectionExpression: "nameSP, info",
+        ProjectionExpression: "idSP, nameSP, info",
         //FilterExpression: "info.#type = :t",
         FilterExpression: "#type = :t",
         ExpressionAttributeNames: {
@@ -270,7 +271,7 @@ app.get('/PC',function (req,res) {
     var kq = path.basename(name);
     var params = {
         TableName: "Product",
-        ProjectionExpression: "nameSP, info",
+        ProjectionExpression: "idSP, nameSP, info",
         //FilterExpression: "info.#type = :t",
         FilterExpression: "#type = :t",
         ExpressionAttributeNames: {
@@ -352,7 +353,7 @@ app.get('/linhkien',function (req,res) {
     var kq = path.basename(name);
     var params = {
         TableName: "Product",
-        ProjectionExpression: "nameSP, info",
+        ProjectionExpression: "idSP, nameSP, info",
         //FilterExpression: "info.#type = :t",
         FilterExpression: "#type = :t",
         ExpressionAttributeNames: {
@@ -433,7 +434,7 @@ app.get('/phukien',function (req,res) {
     var kq = path.basename(name);
     var params = {
         TableName: "Product",
-        ProjectionExpression: "nameSP, info",
+        ProjectionExpression: "idSP, nameSP, info",
         //FilterExpression: "info.#type = :t",
         FilterExpression: "#type = :t",
         ExpressionAttributeNames: {
