@@ -9,7 +9,10 @@ var session = require('express-session');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
 var port = process.env.PORT || 3000;
+
+app.use(flash());
 
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
@@ -56,7 +59,6 @@ passport.use(new LocalStrategy(
             }
         };
         docClient.query(params,function (err,data) {
-            console.log('chay xac thuc');
             if(err)
                 console.log('loi tim',err);
             else
@@ -128,7 +130,7 @@ app.get("/",function (req,res) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan product succeeded.");
-            fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
                 //cái này cho 2 cái banner
@@ -208,7 +210,7 @@ app.get("/Laptop",function (req,res) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan succeeded.");
-            fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
 
@@ -371,7 +373,7 @@ app.get('/linhkien',function (req,res) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan succeeded.");
-            fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
 
@@ -452,7 +454,7 @@ app.get('/phukien',function (req,res) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan succeeded.");
-            fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
 
@@ -532,7 +534,7 @@ app.get("/search",function (req,res) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan succeeded.");
-            fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
 
@@ -610,7 +612,7 @@ app.get('/product-detail',function (req,res) {
             console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
         } else {
             console.log("Query succeeded.");
-            fs.readFile(__dirname+"/product-detail.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
                 var $ = cheerio.load(data1);
                 data.Items.forEach(function(item) {
                     $('#name_sp').text(item.nameSP);
@@ -643,13 +645,13 @@ app.get('/product-detail',function (req,res) {
 // get post nó của route('/login')
 app.route('/login')
     .get(function (req,res) {
-        fs.readFile(__dirname+"/login.html",'utf8',function (err,data) {
+        fs.readFile(__dirname+"/views/login.html",'utf8',function (err,data) {
         res.writeHead(200,{'Context-Type':'text/html'});
         res.write(data);
         res.end();
     })
 })
-    .post(passport.authenticate('local',{successRedirect: '/',failureRedirect:'/login'}))
+    .post(passport.authenticate('local',{successRedirect: '/',failureRedirect:'/login',failureFlash: true }))
 
 app.get('/signup',function (req,res) {
     var root = url.parse(req.url, true);
@@ -687,7 +689,7 @@ app.get('/signup',function (req,res) {
 });
 
 app.get('/cart',function (req,res) {
-    fs.readFile(__dirname+"/cart.html",'utf8',function (err,data) {
+    fs.readFile(__dirname+"/views/cart.html",'utf8',function (err,data) {
         var $ =cheerio.load(data);
         if(req.isAuthenticated())
         {
