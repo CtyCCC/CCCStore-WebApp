@@ -11,6 +11,9 @@ var bodyParser = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var port = process.env.PORT || 3000;
 
+//lấy image icon bootstrap css trong folder public
+app.use('/public', express.static('public'));
+
 /*Đọc dữ liệu root chuyển thành json (t cũng đéo biết :)) )*/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,6 +56,7 @@ passport.use(new LocalStrategy(
             }
         };
         docClient.query(params,function (err,data) {
+            console.log('chay xac thuc');
             if(err)
                 console.log('loi tim',err);
             else
@@ -95,6 +99,7 @@ passport.deserializeUser(function(username, done) {
         }
     };
     docClient.query(params,function (err,data) {
+        console.log('tao session');
         if(err)
             console.log('loi session:',err);
         else
@@ -112,10 +117,6 @@ passport.deserializeUser(function(username, done) {
         }
     })
 });
-
-
-//lấy image icon bootstrap css trong folder public
-app.use('/public', express.static('public'));
 
 ////Get trang product//////
 app.get("/",function (req,res) {
