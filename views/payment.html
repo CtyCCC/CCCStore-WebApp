@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="puclic/images/icons/favicon.png"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/fonts/themify/themify-icons.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/fonts/elegant-font/html-css/style.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/util.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
+
+    <link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap(signup).css">
+    <link type="text/css" rel="stylesheet" href="public/vendor/bootstrap/css/bootstrap-theme.css">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <header class="header1">
+        <!-- Header desktop -->
+        <div class="container-menu-header">
+            <div class="topbar">
+                <div class="topbar-social">
+                    <a href="https://www.facebook.com/Dc.Koool" class="topbar-social-item fa fa-facebook"></a>
+                    <a href="https://www.instagram.com/dckoool/" class="topbar-social-item fa fa-instagram"></a>
+                    <a href="https://www.pinterest.com/" class="topbar-social-item fa fa-pinterest-p"></a>
+                    <a href="https://www.youtube.com/" class="topbar-social-item fa fa-youtube-play"></a>
+                </div>
+
+                <span class="topbar-child1">
+                        Miễn phí vận chuyển với đơn hàng trên 500k
+                    </span>
+
+                <div class="topbar-child2">
+                        <span class="topbar-email">
+                            cccstore@gmail.com
+                        </span>
+                </div>
+            </div>
+
+            <div class="wrap_header">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="public/images/icons/lg.png" alt="IMG-LOGO">
+                </a>
+
+                <!-- Menu -->
+                <div class="wrap_menu">
+                    <nav class="menu">
+                        <ul class="main_menu">
+                            <li>
+                                <a href="/">Trang chủ</a>
+                            </li>
+
+                            <li>
+                                <a href="/cart">Giỏ hàng</a>
+                            </li>
+
+                            <li>
+                                <a href="youtube.com">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Header Icon -->
+                <div class="header-icons">
+                    <div hidden="" id="thongtinKH" class="header-wrapicon2">
+                        <img src="public/images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                        <!-- Header cart noti -->
+                        <div class="header-cart header-dropdown">
+                            <ul class="header-cart-wrapitem">
+                                <li class="header-cart-item">
+                                    <div class="header-cart-item-txt">
+                                        <a id="tenKH" class="header-cart-item-name font-weight-bold text-danger">
+                                            Nguyễn Văn Mạnh Cường
+                                        </a>
+                                    </div>
+                                </li>
+
+                                <li class="header-cart-item">
+                                    <div class="header-cart-item-txt">
+                                        <a id="emailKH" class="header-cart-item-name">
+                                            cuongfpi1313131@gmail.com
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="header-cart-item">
+                                    <div class="header-cart-item-txt">
+                                        <a id="sdtKH" class="header-cart-item-name">
+                                            0987767216
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="header-cart-buttons">
+                                <div class="header-cart-wrapbtn">
+                                    <!-- Button -->
+                                    <a href="logout" class="flex-c-m size1 bg1 bo-rad-15 hov1 s-text1 trans-0-4">
+                                        Đăng xuất
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btndangnhap" class="header-wrapicon1 dis-block">
+                        <a href="login">
+                            <img src="public/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                        </a>
+                    </button>
+
+                    <span class="linedivide1"></span>
+
+                    <div class="header-wrapicon2">
+                        <a href="cart"><img src="public/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+                        <span class="header-icons-noti" id="cart-noti">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="well container">
+        <form class="form-horizontal" method="get" action="paymentfunction">
+            <center><legend>THÔNG TIN KHÁCH HÀNG</legend></center>
+
+            <div class="form-group">
+                <label class="col-md-4 control-lable">Họ và tên: </label>
+                <div class="col-md-4"><input id="ten" name="txttenKH" class="form-control" type="text" autofocus></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-lable">Email: </label>
+                <div class="col-md-4"><input id="mail" name="txtemail" class="form-control" type="text" autofocus></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-lable">SDT: </label>
+                <div class="col-md-4"><input id="sdt" name="txtsdt" class="form-control" type="text" autofocus></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-lable">Địa chỉ giao hàng: </label>
+                <div class="col-md-4"><textarea id="diachi" name="txtdiachi" class="form-control" rows="5"></textarea></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-lable">Ghi chú: </label>
+                <div class="col-md-4"><textarea id="ghichu" name="txtghichu" class="form-control" rows="3"></textarea></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-lable"></label>
+                <div class="col-md-4">
+                    <input type="submit" value="Đặt hàng" class="btn btn-danger btn-block">
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+    <footer class="bg6 p-t-10 p-b-10 p-l-10 p-r-10">
+        <div class="t-center p-l-15 p-r-15">
+            <div class="t-center s-text8 p-t-20">
+                Copyright © 2018 All rights reserved. | From CCC with <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="public/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="public/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="public/vendor/bootstrap/js/popper.js"></script>
+    <script type="text/javascript" src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="public/vendor/select2/select2.min.js"></script>
+
+    <script src="public/javascripts/main.js"></script>
+
+</body>
+</html>

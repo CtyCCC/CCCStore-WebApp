@@ -10,10 +10,10 @@ var passport = require('passport');
 var bodyParser = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var nodemailer = require('nodemailer'); //gửi mail
 var port = process.env.PORT || 3000;
 
 app.use(flash());
-
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
 
@@ -33,12 +33,12 @@ app.use(passport.session());
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
     region: "us-west-2",
-    //endpoint: "http://dynamodb.us-west-2.amazonaws.com"
-    endpoint: "http://localhost:8000"
+    endpoint: "http://dynamodb.us-west-2.amazonaws.com"
+    //endpoint: "http://localhost:8000"
 });
 
-AWS.config.accessKeyId="AKIAI4WFTJMWNCDGC4WA";
-AWS.config.secretAccessKey="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";
+AWS.config.accessKeyId="AKIAJZYP7FWFEJWB4YIQ";
+AWS.config.secretAccessKey="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";
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -70,7 +70,7 @@ passport.use(new LocalStrategy(
                 }
                 else
                 {
-                    return done(null,false);
+                    return done(null,false,{message:'Sai tài khoản hoặc mật khẩu'});
                 }
             }
 
@@ -91,7 +91,7 @@ và thằng này dính với thằng trên
 passport.deserializeUser(function(username, done) {
     var params = {
         TableName: "Customers",
-        ProjectionExpression: "#user,password,Email,sdtKH,tenKH",
+        //ProjectionExpression: "#user,password,Email,sdtKH,tenKH,diaChi,listSP",
         KeyConditionExpression: "#user = :u",
         ExpressionAttributeNames: {
             "#user": "userName",
@@ -612,7 +612,7 @@ app.get('/product-detail',function (req,res) {
             console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
         } else {
             console.log("Query succeeded.");
-            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product-detail.html",'utf8',function (err,data1) {
                 var $ = cheerio.load(data1);
                 data.Items.forEach(function(item) {
                     $('#name_sp').text(item.nameSP);
@@ -646,8 +646,10 @@ app.get('/product-detail',function (req,res) {
 app.route('/login')
     .get(function (req,res) {
         fs.readFile(__dirname+"/views/login.html",'utf8',function (err,data) {
+        var $ =cheerio.load(data);
+        $('#thongbao').text(req.flash('error')[0]);
         res.writeHead(200,{'Context-Type':'text/html'});
-        res.write(data);
+        res.write($.html());
         res.end();
     })
 })
@@ -690,7 +692,9 @@ app.get('/signup',function (req,res) {
 
 app.get('/cart',function (req,res) {
     fs.readFile(__dirname+"/views/cart.html",'utf8',function (err,data) {
+
         var $ =cheerio.load(data);
+
         if(req.isAuthenticated())
         {
             $('#thongtinKH').removeAttr('hidden');
@@ -698,12 +702,84 @@ app.get('/cart',function (req,res) {
             $('#tenKH').text(req.user.tenKH);
             $('#emailKH').text(req.user.Email);
             $('#sdtKH').text(req.user.sdtKH);
+
+            $('#thanhtoan').attr('href','/payment')
         }
+
         res.writeHead(200,{'Context-Type':'text/html'});
         res.write($.html());
         res.end();
     });
 });
+
+app.get('/payment',function (req,res) {
+    fs.readFile(__dirname+"/views/payment.html",'utf8',function (err,data) {
+
+        var $ =cheerio.load(data);
+
+        if(req.isAuthenticated()) {
+            $('#thongtinKH').removeAttr('hidden');
+            $('#btndangnhap').attr('hidden', '');
+            $('#tenKH').text(req.user.tenKH);
+            $('#emailKH').text(req.user.Email);
+            $('#sdtKH').text(req.user.sdtKH);
+        }
+
+        $('#ten').val(req.user.tenKH);
+        $('#mail').val(req.user.Email);
+        $('#sdt').val(req.user.sdtKH);
+        $('#diachi').val(req.user.diaChi);
+
+        res.writeHead(200,{'Context-Type':'text/html'});
+        res.write($.html());
+        res.end();
+    });
+});
+
+app.get('/paymentfunction',function (req,res) {
+
+    var root = url.parse(req.url, true);
+    var query = root.query;
+    var email = query.txtemail;
+    var ten = query.txttenKH;
+    var sdt = query.txtsdt;
+    var dc = query.txtdiachi;
+    var gc = query.txtghichu;
+
+    var noidung = '\t\t\t THÔNG TIN ĐƠN HÀNG'
+        + '\n\t Tên: ' + ten
+        + '\n\t SDT: ' + sdt
+        + '\n\t Địa chỉ giao hàng: ' +dc
+        + '\n\t Thời gian giao hàng dự kiến: 3-4 ngày làm việc'
+        + '\n\t Ghi chú cho shiper: ' + gc
+        + '\n\t Chi tiết tại: www.cccstore.tk';
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'cccstore.pc@gmail.com',
+            pass: 'Chienpro123'
+        }
+    });
+
+    var mailOptions = {
+        from: 'cccstore.pc@gmail.com',
+        to: email,
+        subject: 'Xác nhận đơn hàng từ CCCStore',
+        text: noidung
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+    //gửi mail
+    //res.redirect('/');
+});
+
 app.get('/logout',function (req,res) {
     req.logout();
     res.redirect('/');

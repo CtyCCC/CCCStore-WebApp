@@ -5,6 +5,7 @@
     "sdtKH" : 111111111,
     "tenKH" : "Nguyễn Văn Mạnh",
     "Email" : "cuongpro123@gmail.com",
+    "diaChi" : "Liên khu 4-5, phường Bình Hưng Hòa B, Bình Tân",
     "dsSP" : [
       "LT001", "PK001","PC001"
     ]
@@ -15,6 +16,7 @@
     "sdtKH" : 2222222222,
     "tenKH" : "Trần Hùng Cường",
     "Email" : "cuongpro111111123@gmail.com",
+    "diaChi" : "69 Nguyễn Oanh, phường 10, quận Gò Vấp",
     "dsSP" : [
       "LT002", "PK003","PC003"
     ]
@@ -25,6 +27,7 @@
     "sdtKH" : 3333333333,
     "tenKH" : "Trần Đình Chiến",
     "Email" : "Chien@gmail.com",
+    "diaChi" : "312 Quang Trung, phường 10, quận Gò Vấp",
     "dsSP" : [
       "LT003", "PK003","PC003"
     ]
