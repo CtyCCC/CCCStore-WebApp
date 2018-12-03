@@ -1,21 +1,25 @@
 var express = require('express');
 var app = express();
-var cheerio = require('cheerio');
+var cheerio = require('cheerio'); //thay đổi thuộc tính html
 var fs = require('fs');
 var AWS = require('aws-sdk');
 var url = require('url');
-var path = require('path');
+var path = require('path'); //bỏ dấu / trong name (root)
 var session = require('express-session');
+
+//passport
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+
 var nodemailer = require('nodemailer'); //gửi mail
 var port = process.env.PORT || 3000;
 
-app.use(flash());
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
+
+app.use(flash()); //use for login fail
 
 /*Đọc dữ liệu root chuyển thành json (t cũng đéo biết :)) )*/
 app.use(bodyParser.json());
@@ -26,6 +30,7 @@ app.use(session({
     secret : "secret",
     cookie:{maxAge:1000*60*5}
 }))
+
 // 2 middleware hỗ trợ cho cái passport chạy
 app.use(passport.initialize());
 app.use(passport.session());
@@ -33,8 +38,8 @@ app.use(passport.session());
 /////Khai báo config cho aws sử dụng dynamodb
 AWS.config.update({
     region: "us-west-2",
-    endpoint: "http://dynamodb.us-west-2.amazonaws.com"
-    //endpoint: "http://localhost:8000"
+    //endpoint: "http://dynamodb.us-west-2.amazonaws.com"
+    endpoint: "http://localhost:8000"
 });
 
 AWS.config.accessKeyId="AKIAJZYP7FWFEJWB4YIQ";
@@ -60,16 +65,14 @@ passport.use(new LocalStrategy(
         };
         docClient.query(params,function (err,data) {
             if(err)
-                console.log('loi tim',err);
+                console.log('Lỗi tìm',err);
             else
             {
                 var record = data.Items;
-                if(record.length>0)
-                {
+                if(record.length>0) {
                     return done(null,record[0]);
                 }
-                else
-                {
+                else {
                     return done(null,false,{message:'Sai tài khoản hoặc mật khẩu'});
                 }
             }
@@ -101,9 +104,9 @@ passport.deserializeUser(function(username, done) {
         }
     };
     docClient.query(params,function (err,data) {
-        console.log('tao session');
+        console.log('Đang tạo session');
         if(err)
-            console.log('loi session:',err);
+            console.log('Lỗi session:',err);
         else
         {
             var record = data.Items;
@@ -141,10 +144,12 @@ app.get("/",function (req,res) {
                 $(banner1 + "").attr('href',"product-detail?id=LT006");
                 $(banner2 + "").attr('href',"product-detail?id=LK009");
                 
-                //---Load box chứa item
+                //tạo thêm khung html để chứa các sản phẩm
                 for(var i=2;i<data.Items.length;i++)
                 {
-                    var product = $('#boxstart').clone();
+                    var product = $('#boxstart').clone();//nhân đôi ô mặc định
+
+                    //thay đổi id của thẻ
                     product.removeAttr('id');
                     product.find('#img_sp_1').attr('id','img_sp_'+i);
                     product.find('#name_sp_1').attr('id','name_sp_'+i);
@@ -152,6 +157,7 @@ app.get("/",function (req,res) {
                     product.appendTo('.row_product');
                 }
 
+                //đưa dữ liệu vào
                 data.Items.forEach(function(product){
                     //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
@@ -165,6 +171,7 @@ app.get("/",function (req,res) {
                     $(giasp + index_sp + "").attr('aria-valuetext',product.info.price);
                     index_sp = index_sp + 1;
                 });
+
                 //kiểm tra đã đăng nhập chưa
                 if(req.isAuthenticated())
                 {
@@ -178,6 +185,8 @@ app.get("/",function (req,res) {
                 res.write($.html());
                 res.end();
             });
+
+            //scan thêm, mặc định lệnh scan chỉ quét đc 1MB
             if (typeof data.LastEvaluatedKey != "undefined") {
                 console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
@@ -189,8 +198,10 @@ app.get("/",function (req,res) {
 
 //product/latop trang laptop
 app.get("/Laptop",function (req,res) {
+
     var name = url.parse(req.url).pathname;
     var kq = path.basename(name);
+
     var params = {
         TableName: "Product",
         ProjectionExpression: "idSP, nameSP, info",
@@ -203,7 +214,9 @@ app.get("/Laptop",function (req,res) {
             ":t" : kq
         }
     };
+
     var index_sp = 1;
+
     docClient.scan(params, onScan);
     function onScan(err, data) {
         if (err) {
@@ -259,6 +272,8 @@ app.get("/Laptop",function (req,res) {
                 res.write($.html());
                 res.end();
             });
+
+            // Scan thêm
             if (typeof data.LastEvaluatedKey != "undefined") {
                 console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
@@ -268,7 +283,7 @@ app.get("/Laptop",function (req,res) {
     }
 });
 
-//    /pc trang pc
+//pc trang pc
 app.get('/PC',function (req,res) {
     var name = url.parse(req.url).pathname;
     var kq = path.basename(name);
@@ -291,11 +306,9 @@ app.get('/PC',function (req,res) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             console.log("Scan succeeded.");
-            fs.readFile(__dirname+"/product.html",'utf8',function (err,data1) {
+            fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
-                $('#formtimkiem').attr('action',"PC");
-
 
                 //cái này cho 2 cái banner
                 var banner1 = '#banner11';
@@ -583,6 +596,7 @@ app.get("/search",function (req,res) {
                 res.write($.html());
                 res.end();
             });
+
             if (typeof data.LastEvaluatedKey != "undefined") {
                 console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
@@ -595,8 +609,10 @@ app.get("/search",function (req,res) {
 
 ///Get trang product-detail///////
 app.get('/product-detail',function (req,res) {
+
     var route = url.parse(req.url,true).query;
     var id = route.id;
+
     var params = {
         TableName : "Product",
         KeyConditionExpression: "#id = :iddd",
@@ -665,7 +681,8 @@ app.get('/signup',function (req,res) {
             "password" : query.txtpass,
             "sdtKH": query.txtsdt,
             "tenKH" : query.txtten,
-            "Email" : query.txtmail
+            "Email" : query.txtmail,
+            "diaChi" : query.txtdiachi
         }
     };
     docClient.put(params, function(err, data) {
@@ -678,8 +695,9 @@ app.get('/signup',function (req,res) {
                 "password" : query.txtpass,
                 "sdtKH": query.txtsdt,
                 "tenKH" : query.txtten,
-                "Email" : query.txtmail
-            }
+                "Email" : query.txtmail,
+                "diaChi" : query.txtdiachi
+        }
             req.login(user,function (err) {
                 if(err)
                     return err;
@@ -776,8 +794,34 @@ app.get('/paymentfunction',function (req,res) {
             console.log('Email sent: ' + info.response);
         }
     });
-    //gửi mail
-    //res.redirect('/');
+
+    //cập nhật thông tin KH
+    var params = {
+        TableName:"Customers",
+        Key:{
+            "userName": req.user.userName,
+            "password": req.user.password
+        },
+        UpdateExpression: "set sdtKH = :sdt, tenKH=:ten, Email=:email, diaChi = :dc ",
+        ExpressionAttributeValues:{
+            ":sdt" : query.txtsdt,
+            ":ten" : query.txttenKH,
+            ":email" : query.txtemail,
+            ":dc" : query.txtdiachi
+        },
+        ReturnValues:"UPDATED_NEW"
+    };
+
+    console.log("Updating thoong tin khách hàng...");
+    docClient.update(params, function(err, data) {
+        if (err) {
+            console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+        }
+    });
+	
+	res.redirect('/');
 });
 
 app.get('/logout',function (req,res) {
