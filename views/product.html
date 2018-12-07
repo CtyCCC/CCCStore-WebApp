@@ -406,6 +406,7 @@
                         localStorage.setItem(nameProduct,JSON.stringify(ob));
                         document.getElementById('cart-noti').innerHTML=Number($('#cart-noti').text())+1;
                     }
+
                 }
                 else{
                     swal("Chào mừng bạn! Hãy đăng nhập để thêm sản phẩm vào giỏ hàng!", {
@@ -458,6 +459,13 @@
 	    filterBar.noUiSlider.on('update', function( values, handle ) {
 	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    });
+	</script>
+	<script>
+        for(var i =0 ;i<localStorage.length;i++){
+            var name= encodeURI(localStorage.key(i));
+            var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
+            document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl})+";path=/;";
+        }
 	</script>
 <!--===============================================================================================-->
 	<script src="../public/javascripts/main.js"></script>

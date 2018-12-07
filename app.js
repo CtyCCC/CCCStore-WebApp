@@ -6,6 +6,7 @@ var AWS = require('aws-sdk');
 var url = require('url');
 var path = require('path'); //bỏ dấu / trong name (root)
 var session = require('express-session');
+var cookieParser =require('cookie-parser');
 
 //passport
 var passport = require('passport');
@@ -18,7 +19,7 @@ var port = process.env.PORT || 3000;
 
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
-
+app.use(cookieParser());
 app.use(flash()); //use for login fail
 
 /*Đọc dữ liệu root chuyển thành json (t cũng đéo biết :)) )*/
@@ -65,7 +66,7 @@ passport.use(new LocalStrategy(
         };
         docClient.query(params,function (err,data) {
             if(err)
-                console.log('Lỗi tìm',err);
+                console.log(err);
             else
             {
                 var record = data.Items;
@@ -104,9 +105,8 @@ passport.deserializeUser(function(username, done) {
         }
     };
     docClient.query(params,function (err,data) {
-        console.log('Đang tạo session');
         if(err)
-            console.log('Lỗi session:',err);
+            console.log(err);
         else
         {
             var record = data.Items;
@@ -132,7 +132,6 @@ app.get("/",function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan product succeeded.");
             fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -159,11 +158,9 @@ app.get("/",function (req,res) {
 
                 //đưa dữ liệu vào
                 data.Items.forEach(function(product){
-                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
-                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
@@ -200,7 +197,6 @@ app.get("/",function (req,res) {
 
             //scan thêm, mặc định lệnh scan chỉ quét đc 1MB
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
@@ -234,7 +230,6 @@ app.get("/Laptop",function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan succeeded.");
             fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -259,11 +254,9 @@ app.get("/Laptop",function (req,res) {
                 }
 
                 data.Items.forEach(function(product){
-                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
-                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
@@ -287,7 +280,6 @@ app.get("/Laptop",function (req,res) {
 
             // Scan thêm
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
@@ -317,7 +309,6 @@ app.get('/PC',function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan succeeded.");
             fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -342,11 +333,9 @@ app.get('/PC',function (req,res) {
                 }
 
                 data.Items.forEach(function(product){
-                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
-                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
@@ -368,7 +357,6 @@ app.get('/PC',function (req,res) {
                 res.end();
             });
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
@@ -397,7 +385,6 @@ app.get('/linhkien',function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan succeeded.");
             fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -422,11 +409,9 @@ app.get('/linhkien',function (req,res) {
                 }
 
                 data.Items.forEach(function(product){
-                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
-                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
@@ -448,7 +433,6 @@ app.get('/linhkien',function (req,res) {
                 res.end();
             });
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
@@ -478,7 +462,6 @@ app.get('/phukien',function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan succeeded.");
             fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -503,11 +486,9 @@ app.get('/phukien',function (req,res) {
                 }
 
                 data.Items.forEach(function(product){
-                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
-                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
@@ -529,7 +510,6 @@ app.get('/phukien',function (req,res) {
                 res.end();
             });
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
@@ -558,7 +538,6 @@ app.get("/search",function (req,res) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Scan succeeded.");
             fs.readFile(__dirname+"/views/product.html",'utf8',function (err,data1) {
 
                 var $ = cheerio.load(data1);
@@ -583,11 +562,9 @@ app.get("/search",function (req,res) {
                 }
 
                 data.Items.forEach(function(product){
-                    //console.log("id:"+ product.idSP + "  +tenSP:", product.nameSP);
                     var namesp = '#name_sp_';
                     var giasp = '#price_sp_';
                     var imgsp = '#img_sp_';
-                    //console.log($(imgsp + index_sp).attr('src'));
                     $(namesp + index_sp + "").text(product.nameSP);
                     $(giasp + index_sp + "").text(product.info.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
                     $(imgsp + index_sp).attr('src', product.info.images[0]);
@@ -610,7 +587,6 @@ app.get("/search",function (req,res) {
             });
 
             if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanned all data...");
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 docClient.scan(params, onScan);
             }
@@ -639,7 +615,6 @@ app.get('/product-detail',function (req,res) {
         if (err) {
             console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
         } else {
-            console.log("Query succeeded.");
             fs.readFile(__dirname+"/views/product-detail.html",'utf8',function (err,data1) {
                 var $ = cheerio.load(data1);
                 data.Items.forEach(function(item) {
@@ -701,7 +676,6 @@ app.get('/signup',function (req,res) {
         if (err) {
             console.error("Ko thêm đc, lỗi gì đó . Error JSON:",JSON.stringify(err,null,2));
         } else {
-            console.log("Thêm KH thành cmn công");
             var user ={
                 "userName" : query.txtuser,
                 "password" : query.txtpass,
@@ -826,7 +800,6 @@ app.get('/paymentfunction',function (req,res) {
         ReturnValues:"UPDATED_NEW"
     };
 
-    console.log("Updating thoong tin khách hàng...");
     docClient.update(params, function(err, data) {
         if (err) {
             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
@@ -839,9 +812,54 @@ app.get('/paymentfunction',function (req,res) {
 });
 
 app.get('/logout',function (req,res) {
+    var data =req.cookies;
+    var sp=[],sl=[];
+    for(x in data){
+        try{
+            sp.push(decodeURIComponent(JSON.parse(data[x]).key));
+            sl.push(JSON.parse(data[x]).val);
+        } catch (e) {
+            continue;
+        }
+
+    }
+    var params = {
+        TableName:'Customers',
+        Key:{
+            "userName": req.user.userName,
+            "password": req.user.password
+        },
+        UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
+        ExpressionAttributeValues:{
+            ":i":sp,
+            ":l":sl,
+        },
+        ReturnValues:"UPDATED_NEW"
+    };
+    docClient.update(params,function (err,data) {
+        if(err){
+            console.log(err);
+        }
+        else
+            console.log(JSON.stringify(data));
+    })
     req.logout();
     res.redirect('/');
 });
+
+
+app.get('/kh',function (req,res) {
+    var params = {
+        TableName: 'Customers',
+        Key:{
+            "userName": req.user.userName,
+            "password": req.user.password
+        }
+    };
+    docClient.get(params,function (err,data) {
+        console.log(JSON.stringify(data));
+    })
+})
 
 var server = app.listen(port,function () {
     console.log("http://127.0.0.1:"+port+"/");

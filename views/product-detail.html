@@ -334,6 +334,13 @@
             document.getElementById('dangky').style.display='block';
         }
 	</script>
+	<script>
+        for(var i =0 ;i<localStorage.length;i++){
+            var name= encodeURI(localStorage.key(i));
+            var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
+            document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl})+";path=/;";
+        }
+	</script>
 <!--===============================================================================================-->
 	<script src="../public/javascripts/main.js"></script>
 </body>
