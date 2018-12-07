@@ -328,6 +328,7 @@
 			</div>
 		</div>
         <p id="islogin" hidden>0</p>
+        <p id="slsp" hidden>0</p>
 	</footer>
 
 	<!-- Back to top -->
@@ -368,7 +369,19 @@
 	<script type="text/javascript" src="../public/javascripts/slick-custom.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="../public/vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<script type="text/javascript">
+        if($('#islogin').text()=='1'){
+            var sl = Number($('#slsp').text());
+            for(var i=0 ; i<sl; i++){
+                var ob = Cookies.get('sp'+(i+1));
+                var nameProduct = JSON.parse(ob).name;
+                //alert(nameProduct);
+                localStorage.setItem(nameProduct,ob);
+                document.getElementById('cart-noti').innerHTML=localStorage.length;
+            }
+        }
+
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
             var price = $(this).parent().parent().parent().find('.block2-price').attr('aria-valuetext');
@@ -399,7 +412,7 @@
                         buttons:  true,
                     }).then((willLogin) => {
                         if (willLogin) {
-                            //Hiện trang login
+                            location.replace("http://127.0.0.1:3000/login");
                         }
                     });
                 }

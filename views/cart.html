@@ -264,65 +264,38 @@
 		});
 	</script>
 	<script type="text/javascript">
-        if($('#islogin').text()==1) {
-            ///Lưu dữ liệu từ trang cart lên localStorage
-            for(i=0;i<Number($('#slsp').text());i++) {
-                var nameProduct = $('#idsp'+(i+1)).text();
-                var price = $('#idgiasp'+(i+1)).text();
-                $('#idgiasp'+(i+1)).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
-                var image = $('#idimg'+(i+1)).attr('src');
-                var sl = Number($('#sl_sp_'+(i+1)).attr('value'));
-                var kt = false;
-                if(localStorage.key(i)==nameProduct){
-                    sl += Number(JSON.parse(localStorage.getItem(nameProduct)).sl);
-                    var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl };
-                    localStorage.setItem(nameProduct,JSON.stringify(ob));
-                    document.getElementById('cart-noti').innerHTML=localStorage.length;
-                    kt = true;
-                }
-                if(kt == false ){
-                    var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl };
-                    localStorage.setItem(nameProduct,JSON.stringify(ob));
-                    document.getElementById('cart-noti').innerHTML=localStorage.length;
-                }
-            }
-            loadcart();
-        }
-        function loadcart() {
+        if($('#islogin').text()=='1') {
             var count =1;
-            <!--Hiện Row start-->
-            $('#rowstart').removeAttr('hidden');
-            if(localStorage.length>Number($('#slsp').text())){
-                var d = localStorage.length - Number($('#slsp').text());
+            if(localStorage.length>0){
+                <!--Hiện Row start-->
+                $('#rowstart').removeAttr('hidden');
+            }
+            for (var i=0; i<localStorage.length; ++i) {
+
                 //tạo thêm row
-                for(var a=1;a<=d;a++)
+                if (count != 1)
                 {
                     var Newrow = $('#rowstart').clone();
                     Newrow.removeAttr('id');
-                    Newrow.find('#idimg1').attr('id','idimg'+(Number($('#slsp').text())+a));
-                    Newrow.find('#idsp1').attr('id','idsp'+(Number($('#slsp').text())+a));
-                    Newrow.find('#idgiasp1').attr('id','idgiasp'+(Number($('#slsp').text())+a));
-                    Newrow.find('#tt_sp_1').attr('id','tt_sp_'+(Number($('#slsp').text())+a));
-                    Newrow.find('#sl_sp_1').attr('id','sl_sp_'+(Number($('#slsp').text())+a));
+                    Newrow.find('#idimg1').attr('id','idimg'+count);
+                    Newrow.find('#idsp1').attr('id','idsp'+count);
+                    Newrow.find('#idgiasp1').attr('id','idgiasp'+count);
+                    Newrow.find('#tt_sp_1').attr('id','tt_sp_'+count);
+                    Newrow.find('#sl_sp_1').attr('id','sl_sp_'+count);
                     Newrow.appendTo('.table-shopping-cart');
                 }
-                for (var i=0; i<localStorage.length; ++i) {
-
-                    var Key = localStorage.key(i);
-                    var gia = parseInt(JSON.parse(localStorage.getItem(Key)).price);
-                    document.getElementById('cart-noti').innerHTML=localStorage.length;
-                    document.getElementById('idsp'+count).innerHTML  = JSON.parse(localStorage.getItem(Key)).name;
-                    document.getElementById('idgiasp'+count).innerHTML  = gia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
-                    document.getElementById('idimg' + count).src = JSON.parse(localStorage.getItem(Key)).image;
-                    document.getElementById('sl_sp_'+count).setAttribute('value',JSON.parse(localStorage.getItem(Key)).sl);
-                    var tt = gia * document.getElementById('sl_sp_'+count).getAttribute('value');
-                    document.getElementById('tt_sp_'+count).innerHTML = tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
-                    count++;
-                }
+                var Key = localStorage.key(i);
+                var gia = parseInt(JSON.parse(localStorage.getItem(Key)).price);
+                document.getElementById('cart-noti').innerHTML=localStorage.length;
+                document.getElementById('idsp'+count).innerHTML  = JSON.parse(localStorage.getItem(Key)).name;
+                document.getElementById('idgiasp'+count).innerHTML  = gia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
+                document.getElementById('idimg' + count).src = JSON.parse(localStorage.getItem(Key)).image;
+                document.getElementById('sl_sp_'+count).setAttribute('value',JSON.parse(localStorage.getItem(Key)).sl);
+                var tt = gia * document.getElementById('sl_sp_'+count).getAttribute('value');
+                document.getElementById('tt_sp_'+count).innerHTML = tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
+                count++;
             }
-
         }
-
 		tinh_tong_tien();
 
 		//nút tăng số lượng
