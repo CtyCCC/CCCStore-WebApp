@@ -92,7 +92,6 @@
                                 <li class="header-cart-item">
                                     <div class="header-cart-item-txt">
                                         <a id="tenKH" class="header-cart-item-name font-weight-bold text-danger">
-                                            Nguyễn Văn Mạnh Cường
                                         </a>
                                     </div>
                                 </li>
@@ -117,7 +116,7 @@
                                 <div class="header-cart-wrapbtn">
                                     <!-- Button -->
                                     <a href="logout" class="flex-c-m size1 bg1 bo-rad-15 hov1 s-text1 trans-0-4">
-                                        Đăng xuất
+                                        <button onclick="dx()">Đăng xuất</button>
                                     </a>
                                 </div>
 
@@ -200,6 +199,15 @@
     <script type="text/javascript" src="public/vendor/select2/select2.min.js"></script>
 
     <script src="public/javascripts/main.js"></script>
-
+    <script>
+        function dx() {
+            for(var i =0 ;i<localStorage.length;i++){
+                var name= encodeURI(localStorage.key(i));
+                var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
+                document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl});
+            }
+            localStorage.clear();
+        }
+    </script>
 </body>
 </html>

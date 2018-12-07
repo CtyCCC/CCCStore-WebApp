@@ -813,38 +813,74 @@ app.get('/paymentfunction',function (req,res) {
 
 app.get('/logout',function (req,res) {
     var data =req.cookies;
+    var userName = req.user.userName;
+    var pass = req.user.password;
     var sp=[],sl=[];
-    for(x in data){
-        try{
-            sp.push(decodeURIComponent(JSON.parse(data[x]).key));
-            sl.push(JSON.parse(data[x]).val);
-        } catch (e) {
+    for( x in data){
+        try {
+            var ss = decodeURIComponent(JSON.parse(data[x]).key);
+            if(decodeURIComponent(JSON.parse(data[x]).val) != 'undefined'){
+                sl.push(decodeURIComponent(JSON.parse(data[x]).val));
+            }
+            if(ss != 'undefined'){
+                var params1 = {
+                    TableName: 'Product',
+                    ProjectionExpression: '#id',
+                    FilterExpression: '#name = :nnn',
+                    ExpressionAttributeNames: {
+                        '#id': "idSP",
+                        '#name': "nameSP"
+                    },
+                    ExpressionAttributeValues: {
+                        ":nnn": ss,
+                    }
+                }
+                docClient.scan(params1, onScan);
+                function onScan(err, data) {
+                    if (err) {
+                        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                    } else {
+                        data.Items.forEach(function (item) {
+                            sp.push(item.idSP);
+                        });
+                        if (sp.length == sl.length) {
+                            var params = {
+                                TableName: 'Customers',
+                                Key: {
+                                    "userName": userName,
+                                    "password": pass
+                                },
+                                UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
+                                ExpressionAttributeValues: {
+                                    ":i": sp,
+                                    ":l": sl,
+                                },
+                                ReturnValues: "UPDATED_NEW"
+                            };
+                            docClient.update(params, function (err, data) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                else {
+                                    console.log(JSON.stringify(data));
+                                }
+                            });
+                        }
+                    }
+                    if (typeof data.LastEvaluatedKey != "undefined") {
+                        console.log("Scanning for more...");
+                        params1.ExclusiveStartKey = data.LastEvaluatedKey;
+                        docClient.scan(params1, onScan);
+                    }
+                };
+            }
+        }catch (e) {
             continue;
         }
-
     }
-    var params = {
-        TableName:'Customers',
-        Key:{
-            "userName": req.user.userName,
-            "password": req.user.password
-        },
-        UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
-        ExpressionAttributeValues:{
-            ":i":sp,
-            ":l":sl,
-        },
-        ReturnValues:"UPDATED_NEW"
-    };
-    docClient.update(params,function (err,data) {
-        if(err){
-            console.log(err);
-        }
-        else
-            console.log(JSON.stringify(data));
-    })
     req.logout();
     res.redirect('/');
+
 });
 
 

@@ -117,7 +117,7 @@
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="logout" class="flex-c-m size1 bg1 bo-rad-15 hov1 s-text1 trans-0-4">
-										Đăng xuất
+										<button onclick="dx()">Đăng xuất</button>
 									</a>
 								</div>
 
@@ -371,6 +371,16 @@
 	<script type="text/javascript" src="../public/vendor/sweetalert/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<script type="text/javascript">
+		//Xóa cookie khi đăng xuất
+		if($('#islogin').text()=='0'){
+            var res = document.cookie;
+            var multiple = res.split(";");
+            for(var i = 0; i < multiple.length; i++) {
+                var key = multiple[i].split("=");
+                document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+            }
+		}
+		//Đổ dữ liệu từ cookie lên localStorage
         if($('#islogin').text()=='1'){
             var sl = Number($('#slsp').text());
             for(var i=0 ; i<sl; i++){
@@ -461,10 +471,13 @@
 	    });
 	</script>
 	<script>
-        for(var i =0 ;i<localStorage.length;i++){
-            var name= encodeURI(localStorage.key(i));
-            var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
-            document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl})+";path=/;";
+		function dx() {
+            for(var i =0 ;i<localStorage.length;i++){
+                var name= encodeURI(localStorage.key(i));
+                var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
+                document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl});
+            }
+            localStorage.clear();
         }
 	</script>
 <!--===============================================================================================-->

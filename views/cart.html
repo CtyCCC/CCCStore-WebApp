@@ -117,7 +117,7 @@
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="logout" class="flex-c-m size1 bg1 bo-rad-15 hov1 s-text1 trans-0-4">
-										Đăng xuất
+										<button onclick="dx()">Đăng xuất</button>
 									</a>
 								</div>
 
@@ -380,10 +380,13 @@
         }
     </script>
 	<script>
-        for(var i =0 ;i<localStorage.length;i++){
-            var name= encodeURI(localStorage.key(i));
-            var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
-            document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl})+";path=/;";
+        function dx() {
+            for(var i =0 ;i<localStorage.length;i++){
+                var name= encodeURI(localStorage.key(i));
+                var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
+                document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl});
+            }
+            localStorage.clear();
         }
 	</script>
 <!--===============================================================================================-->

@@ -115,7 +115,7 @@
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="logout" class="flex-c-m size1 bg1 bo-rad-15 hov1 s-text1 trans-0-4">
-										Đăng xuất
+										<button onclick="dx()">Đăng xuất</button>
 									</a>
 								</div>
 
@@ -296,23 +296,35 @@
 			var image = $('#img_1_2').attr('src');
             var kt = false;
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-                for (var i=0, sl=localStorage.length; i<sl; ++i){
-                    if(localStorage.key(i)==nameProduct){
-                        var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+            $(this).on('click', function(){
+                if($('#islogin').text()=='1'){
+                    swal(nameProduct, "Đã thêm vào giỏ hàng !", "success");
+                    for (var i=0, sl=localStorage.length; i<sl; ++i){
+                        if(localStorage.key(i)==nameProduct){
+                            var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+                            var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
+                            localStorage.setItem(nameProduct,JSON.stringify(ob));
+                            kt = true;
+                        }
+                    };
+                    if(kt==false){
+                        var sl_sp = 1;
                         var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
                         localStorage.setItem(nameProduct,JSON.stringify(ob));
-                        kt = true;
+                        document.getElementById('cart-noti').innerHTML=Number($('#cart-noti').text())+1;
                     }
-                };
-                if(kt==false){
-                    var sl_sp = 1;
-                    var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
-                    localStorage.setItem(nameProduct,JSON.stringify(ob));
+
                 }
-                document.getElementById('cart-noti').innerHTML=localStorage.length;
-			});
+                else{
+                    swal("Chào mừng bạn! Hãy đăng nhập để thêm sản phẩm vào giỏ hàng!", {
+                        buttons:  true,
+                    }).then((willLogin) => {
+                        if (willLogin) {
+                            location.replace("http://127.0.0.1:3000/login");
+                        }
+                    });
+                }
+            });
 		});
 
         window.onclick = function(event) {
@@ -335,10 +347,13 @@
         }
 	</script>
 	<script>
-        for(var i =0 ;i<localStorage.length;i++){
-            var name= encodeURI(localStorage.key(i));
-            var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
-            document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl})+";path=/;";
+        function dx() {
+            for(var i =0 ;i<localStorage.length;i++){
+                var name= encodeURI(localStorage.key(i));
+                var sl = JSON.parse(localStorage.getItem(localStorage.key(i))).sl;
+                document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl});
+            }
+            localStorage.clear();
         }
 	</script>
 <!--===============================================================================================-->
