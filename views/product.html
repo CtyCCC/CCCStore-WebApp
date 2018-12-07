@@ -327,6 +327,7 @@
 				Copyright © 2018 All rights reserved. | From CCC with <i class="fa fa-heart-o" aria-hidden="true"></i>
 			</div>
 		</div>
+        <p id="islogin" hidden>0</p>
 	</footer>
 
 	<!-- Back to top -->
@@ -368,30 +369,40 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="../public/vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
-        document.getElementById('cart-noti').innerHTML=localStorage.length;
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
             var price = $(this).parent().parent().parent().find('.block2-price').attr('aria-valuetext');
             var image = $(this).parent().parent().parent().find('.vcl').attr('src');
             var kt = false;
-
+            var slsp = Number($('#cart-noti').text());
             //var image = document.getElementById('img_sp_1').src;
 			$(this).on('click', function(){
-                swal(nameProduct, "Đã thêm vào giỏ hàng !", "success");
-                for (var i=0, sl=localStorage.length; i<sl; ++i){
-                    if(localStorage.key(i)==nameProduct){
-                        var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+			    if($('#islogin').text()=='1'){
+                    swal(nameProduct, "Đã thêm vào giỏ hàng !", "success");
+                    for (var i=0, sl=localStorage.length; i<sl; ++i){
+                        if(localStorage.key(i)==nameProduct){
+                            var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+                            var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
+                            localStorage.setItem(nameProduct,JSON.stringify(ob));
+                            kt = true;
+                        }
+                    };
+                    if(kt==false){
+                        var sl_sp = 1;
                         var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
                         localStorage.setItem(nameProduct,JSON.stringify(ob));
-                        kt = true;
+                        document.getElementById('cart-noti').innerHTML=Number($('#cart-noti').text())+1;
                     }
-                };
-                if(kt==false){
-                    var sl_sp = 1;
-                    var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
-                    localStorage.setItem(nameProduct,JSON.stringify(ob));
                 }
-                document.getElementById('cart-noti').innerHTML=localStorage.length;
+                else{
+                    swal("Chào mừng bạn! Hãy đăng nhập để thêm sản phẩm vào giỏ hàng!", {
+                        buttons:  true,
+                    }).then((willLogin) => {
+                        if (willLogin) {
+                            //Hiện trang login
+                        }
+                    });
+                }
 			});
 		});
 

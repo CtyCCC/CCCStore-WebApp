@@ -180,6 +180,9 @@ app.get("/",function (req,res) {
                     $('#tenKH').text(req.user.tenKH);
                     $('#emailKH').text(req.user.Email);
                     $('#sdtKH').text(req.user.sdtKH);
+                    var dsSp = req.user.dsSP.id;
+                    $('#cart-noti').text(dsSp.length+"");
+                    $('#islogin').text("1");
                 }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
@@ -709,25 +712,82 @@ app.get('/signup',function (req,res) {
 });
 
 app.get('/cart',function (req,res) {
-    fs.readFile(__dirname+"/views/cart.html",'utf8',function (err,data) {
+    if(req.isAuthenticated())
+    {
+        var dsSp = req.user.dsSP.id;
+        var soluong = req.user.dsSP.sl;
+        if(dsSp.length>0){
+            var count = 1;
+            var params = {TableName : "Product"};
+            docClient.scan(params, onScan);
+            function onScan(err, data) {
+                if (err) {
+                    console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                } else {
+                    fs.readFile(__dirname+"/views/cart.html",'utf8',function (err,data1){
+                        var $ =cheerio.load(data1);
+                        $('#thongtinKH').removeAttr('hidden');
+                        $('#btndangnhap').attr('hidden','');
+                        $('#tenKH').text(req.user.tenKH);
+                        $('#emailKH').text(req.user.Email);
+                        $('#sdtKH').text(req.user.sdtKH);
 
-        var $ =cheerio.load(data);
-
-        if(req.isAuthenticated())
-        {
-            $('#thongtinKH').removeAttr('hidden');
-            $('#btndangnhap').attr('hidden','');
-            $('#tenKH').text(req.user.tenKH);
-            $('#emailKH').text(req.user.Email);
-            $('#sdtKH').text(req.user.sdtKH);
-
-            $('#thanhtoan').attr('href','/payment')
+                        $('#thanhtoan').attr('href','/payment');
+                        $('#islogin').text('1');
+                        $('#rowstart').removeAttr('hidden');
+                        $('#cart-noti').text(dsSp.length+"");
+                        $('#slsp').text(dsSp.length);
+                        if (dsSp.length>1){
+                            for (var i=1; i<soluong.length; i++)
+                            {
+                                var Newrow = $('#rowstart').clone();
+                                Newrow.removeAttr('id');
+                                Newrow.find('#idimg1').attr('id','idimg'+(i+1));
+                                Newrow.find('#idsp1').attr('id','idsp'+(i+1));
+                                Newrow.find('#idgiasp1').attr('id','idgiasp'+(i+1));
+                                Newrow.find('#tt_sp_1').attr('id','tt_sp_'+(i+1));
+                                Newrow.find('#sl_sp_1').attr('id','sl_sp_'+(i+1));
+                                Newrow.appendTo('.table-shopping-cart');
+                            }
+                        }
+                        data.Items.forEach(function(item) {
+                            for(var i=0; i<dsSp.length; i++){
+                                if(dsSp[i]==item.idSP){
+                                    var idsp = '#idsp'+count;
+                                    $(idsp + "").text(item.nameSP);
+                                    var idgiasp = '#idgiasp'+count;
+                                    $(idgiasp + "").text(item.info.price);
+                                    var idimg = '#idimg'+count;
+                                    $(idimg + "").attr('src',item.info.images[0]);
+                                    var sl_sp = '#sl_sp_'+count;
+                                    $(sl_sp + "").attr('value',soluong[count-1]);
+                                    var tt = item.info.price * soluong[count-1];
+                                    var tt_sp = '#tt_sp_'+count;
+                                    $(tt_sp).text(tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ");
+                                    count++;
+                                }
+                            }
+                        });
+                        res.writeHead(200,{'Context-Type':'text/html'});
+                        res.write($.html());
+                        res.end();
+                    });
+                }
+                if (typeof data.LastEvaluatedKey != "undefined") {
+                    console.log("Scanned all data...");
+                    params.ExclusiveStartKey = data.LastEvaluatedKey;
+                    docClient.scan(params, onScan);
+                }
+            }
         }
-
-        res.writeHead(200,{'Context-Type':'text/html'});
-        res.write($.html());
-        res.end();
-    });
+    }else{
+        fs.readFile(__dirname+"/views/cart.html",'utf8',function (err,data) {
+            var $ =cheerio.load(data);
+            res.writeHead(200,{'Context-Type':'text/html'});
+            res.write($.html());
+            res.end();
+        });
+    }
 });
 
 app.get('/payment',function (req,res) {

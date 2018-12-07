@@ -11,7 +11,7 @@ AWS.config.secretAccessKey="vvdbbi9xqkuoNDFNyRcf/UPuqmQRDkt1pSRpRilD";
 var dynamodb = new AWS.DynamoDB();
 
 var params = {
-    TableName : "Product"
+    TableName : "Customers"
 };
 
 dynamodb.deleteTable(params, function(err, data) {
