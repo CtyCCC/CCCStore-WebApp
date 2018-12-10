@@ -52,7 +52,7 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						cccstore@gmail.com
+						support@cccstore.tk
 					</span>
 				</div>
 			</div>
@@ -371,6 +371,7 @@
 	<script type="text/javascript" src="../public/vendor/sweetalert/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<script type="text/javascript">
+        document.getElementById('cart-noti').innerHTML=localStorage.length;
 		//Xóa cookie khi đăng xuất
 		if($('#islogin').text()=='0'){
             var res = document.cookie;
@@ -389,7 +390,9 @@
                 //alert(nameProduct);
                 localStorage.setItem(nameProduct,ob);
                 document.getElementById('cart-noti').innerHTML=localStorage.length;
+                Cookies.remove('sp'+(i+1));
             }
+            //Cookies.remove('connect.sid');
         }
 
 		$('.block2-btn-addcart').each(function(){
@@ -404,7 +407,7 @@
                     swal(nameProduct, "Đã thêm vào giỏ hàng !", "success");
                     for (var i=0, sl=localStorage.length; i<sl; ++i){
                         if(localStorage.key(i)==nameProduct){
-                            var sl_sp = JSON.parse(localStorage.getItem(nameProduct)).sl + 1;
+                            var sl_sp = Number(JSON.parse(localStorage.getItem(nameProduct)).sl) + 1;
                             var ob =  {'name': nameProduct, 'image': image, 'price':price, 'sl':sl_sp };
                             localStorage.setItem(nameProduct,JSON.stringify(ob));
                             kt = true;

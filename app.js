@@ -72,6 +72,7 @@ passport.use(new LocalStrategy(
                 var record = data.Items;
                 if(record.length>0) {
                     return done(null,record[0]);
+                    qqq
                 }
                 else {
                     return done(null,false,{message:'Sai tài khoản hoặc mật khẩu'});
@@ -122,6 +123,10 @@ passport.deserializeUser(function(username, done) {
         }
     })
 });
+
+
+/////Biến dùng để kt số lần kt đăng nhập
+var check = 0;
 
 ////Get trang product//////
 app.get("/",function (req,res) {
@@ -177,18 +182,21 @@ app.get("/",function (req,res) {
                     $('#tenKH').text(req.user.tenKH);
                     $('#emailKH').text(req.user.Email);
                     $('#sdtKH').text(req.user.sdtKH);
-                    var dsSp = req.user.dsSP.id;
-                    $('#cart-noti').text(dsSp.length+"");
                     $('#islogin').text("1");
-                    $('#slsp').text(req.user.dsSP.sl.length);
-                    data.Items.forEach(function(item){
-                        for (var i = 0 ; i<dsSp.length;i++){
-                            if(dsSp[i]==item.idSP){
-                                var ob = {'name':item.nameSP,'price':item.info.price,'image':item.info.images[0],'sl':req.user.dsSP.sl[i]};
-                                res.cookie('sp'+(i+1),JSON.stringify(ob));
+                    if(check == 0 ){
+                        var dsSp = req.user.dsSP.id;
+                        $('#cart-noti').text(dsSp.length+"");
+                        $('#slsp').text(req.user.dsSP.sl.length);
+                        data.Items.forEach(function(item){
+                            for (var i = 0 ; i<dsSp.length;i++){
+                                if(dsSp[i]==item.idSP){
+                                    var ob = {'name':item.nameSP,'price':item.info.price,'image':item.info.images[0],'sl':req.user.dsSP.sl[i]};
+                                    res.cookie('sp'+(i+1),JSON.stringify(ob));
+                                }
                             }
-                        }
-                    });
+                        });
+                        check = check +1;
+                    }
                 }
                 res.writeHead(200,{'Context-Type':'text/html'});
                 res.write($.html());
@@ -812,14 +820,14 @@ app.get('/paymentfunction',function (req,res) {
 });
 
 app.get('/logout',function (req,res) {
-    var data =req.cookies;
+    var data = req.cookies;
     var userName = req.user.userName;
     var pass = req.user.password;
     var sp=[],sl=[];
+    var kt = 0;
     for( x in data){
         try {
             var ss = decodeURIComponent(JSON.parse(data[x]).key);
-            console.log(ss);
             if(decodeURIComponent(JSON.parse(data[x]).val) != 'undefined'){
                 sl.push(decodeURIComponent(JSON.parse(data[x]).val));
             }
@@ -835,55 +843,73 @@ app.get('/logout',function (req,res) {
                     ":nnn": ss,
                 }
             };
-            try{
-                docClient.scan(params1, onScan);
-                function onScan(err, data) {
-                    if (err) {
-                        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-                    } else {
-                        data.Items.forEach(function (item) {
-                            sp.push(item.idSP);
-                        });
-                        if (sp.length == sl.length) {
-                            var params = {
-                                TableName: 'Customers',
-                                Key: {
-                                    "userName": userName,
-                                    "password": pass
-                                },
-                                UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
-                                ExpressionAttributeValues: {
-                                    ":i": sp,
-                                    ":l": sl,
-                                },
-                                ReturnValues: "UPDATED_NEW"
-                            };
-                            docClient.update(params, function (err, data) {
-                                if (err) {
-                                    console.log(err);
-                                }
-                                else {
-                                    console.log(JSON.stringify(data));
-                                }
-                            });
+            docClient.scan(params1, onScan);
+            function onScan(err, data) {
+                if (err) {
+                    console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                } else {
+                    data.Items.forEach(function (item) {
+                        sp.push(item.idSP);
+                    });
+                    var params = {
+                        TableName: 'Customers',
+                        Key: {
+                            "userName": userName,
+                            "password": pass
+                        },
+                        UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
+                        ExpressionAttributeValues: {
+                            ":i": sp,
+                            ":l": sl,
+                        },
+                        ReturnValues: "UPDATED_NEW"
+                    };
+                    docClient.update(params, function (err, data) {
+                        if (err) {
+                            console.log(err);
                         }
-                    }
-                    if (typeof data.LastEvaluatedKey != "undefined") {
-                        console.log("Scanning for more...");
-                        params1.ExclusiveStartKey = data.LastEvaluatedKey;
-                        docClient.scan(params1, onScan);
-                    }
-                };
-            }catch (e) {
-                continue;
-            }
+                        else {
+                            console.log(JSON.stringify(data));
+                        }
+                    });
+                }
+                if (typeof data.LastEvaluatedKey != "undefined") {
+                    console.log("Scanning for more...");
+                    params1.ExclusiveStartKey = data.LastEvaluatedKey;
+                    docClient.scan(params1, onScan);
+                }
+            };
         }catch (e) {
             continue;
         }
+        kt = 1;
     }
+    if(kt == 0){
+        var params = {
+            TableName: 'Customers',
+            Key: {
+                "userName": userName,
+                "password": pass
+            },
+            UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
+            ExpressionAttributeValues: {
+                ":i": sp,
+                ":l": sl,
+            },
+            ReturnValues: "UPDATED_NEW"
+        };
+        docClient.update(params, function (err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(JSON.stringify(data));
+            }
+        });
+    };
     req.logout();
+    check = 0;
     res.redirect('/');
-
 });
 
 
