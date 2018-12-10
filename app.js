@@ -819,22 +819,23 @@ app.get('/logout',function (req,res) {
     for( x in data){
         try {
             var ss = decodeURIComponent(JSON.parse(data[x]).key);
+            console.log(ss);
             if(decodeURIComponent(JSON.parse(data[x]).val) != 'undefined'){
                 sl.push(decodeURIComponent(JSON.parse(data[x]).val));
             }
-            if(ss != 'undefined'){
-                var params1 = {
-                    TableName: 'Product',
-                    ProjectionExpression: '#id',
-                    FilterExpression: '#name = :nnn',
-                    ExpressionAttributeNames: {
-                        '#id': "idSP",
-                        '#name': "nameSP"
-                    },
-                    ExpressionAttributeValues: {
-                        ":nnn": ss,
-                    }
+            var params1 = {
+                TableName: 'Product',
+                ProjectionExpression: '#id',
+                FilterExpression: '#name = :nnn',
+                ExpressionAttributeNames: {
+                    '#id': "idSP",
+                    '#name': "nameSP"
+                },
+                ExpressionAttributeValues: {
+                    ":nnn": ss,
                 }
+            };
+            try{
                 docClient.scan(params1, onScan);
                 function onScan(err, data) {
                     if (err) {
@@ -873,6 +874,8 @@ app.get('/logout',function (req,res) {
                         docClient.scan(params1, onScan);
                     }
                 };
+            }catch (e) {
+                continue;
             }
         }catch (e) {
             continue;
