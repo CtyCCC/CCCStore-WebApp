@@ -371,28 +371,30 @@
 	<script type="text/javascript" src="../public/vendor/sweetalert/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<script type="text/javascript">
-        document.getElementById('cart-noti').innerHTML=localStorage.length;
-		//Xóa cookie khi đăng xuất
-		if($('#islogin').text()=='0'){
+        document.getElementById('cart-noti').innerHTML="0";
+
+        //Xóa cookie khi đăng xuất
+        if($('#islogin').text()=='0'){
             var res = document.cookie;
             var multiple = res.split(";");
             for(var i = 0; i < multiple.length; i++) {
                 var key = multiple[i].split("=");
                 document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
             }
-		}
+        }
+
 		//Đổ dữ liệu từ cookie lên localStorage
         if($('#islogin').text()=='1'){
             var sl = Number($('#slsp').text());
             for(var i=0 ; i<sl; i++){
                 var ob = Cookies.get('sp'+(i+1));
                 var nameProduct = JSON.parse(ob).name;
-                //alert(nameProduct);
                 localStorage.setItem(nameProduct,ob);
                 document.getElementById('cart-noti').innerHTML=localStorage.length;
                 Cookies.remove('sp'+(i+1));
             }
-            Cookies.remove('connect.sid');
+            //Cookies.remove('connect.sid');
+            document.cookie = "check = 1";
         }
 
 		$('.block2-btn-addcart').each(function(){
@@ -400,7 +402,6 @@
             var price = $(this).parent().parent().parent().find('.block2-price').attr('aria-valuetext');
             var image = $(this).parent().parent().parent().find('.vcl').attr('src');
             var kt = false;
-            var slsp = Number($('#cart-noti').text());
             //var image = document.getElementById('img_sp_1').src;
 			$(this).on('click', function(){
 			    if($('#islogin').text()=='1'){

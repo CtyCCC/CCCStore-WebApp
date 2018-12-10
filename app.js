@@ -114,6 +114,8 @@ passport.deserializeUser(function(username, done) {
             if(record.length>0)
             {
                 return done(null,record[0]);
+
+
             }
             else
             {
@@ -125,12 +127,9 @@ passport.deserializeUser(function(username, done) {
 });
 
 
-/////Biến dùng để kt số lần kt đăng nhập
-var check = 0;
 
 ////Get trang product//////
 app.get("/",function (req,res) {
-    console
     var params={TableName:"Product"};
     var index_sp = 1;
     docClient.scan(params, onScan);
@@ -184,10 +183,10 @@ app.get("/",function (req,res) {
                     $('#emailKH').text(req.user.Email);
                     $('#sdtKH').text(req.user.sdtKH);
                     $('#islogin').text("1");
-                    if(check == 0 ){
+                    var check = decodeURIComponent((req.cookies).check);
+                    if(check != 1){
                         var dsSp = req.user.dsSP.id;
-                        $('#cart-noti').text(dsSp.length+"");
-                        $('#slsp').text(req.user.dsSP.sl.length);
+                        $('#slsp').text(dsSp.length);
                         data.Items.forEach(function(item){
                             for (var i = 0 ; i<dsSp.length;i++){
                                 if(dsSp[i]==item.idSP){
@@ -196,7 +195,6 @@ app.get("/",function (req,res) {
                                 }
                             }
                         });
-                        check = 1;
                     }
                 }
                 res.writeHead(200,{'Context-Type':'text/html'});
@@ -883,12 +881,12 @@ app.get('/logout',function (req,res) {
                         docClient.scan(params1, onScan);
                     }
                 };
+                kt = 1;
             }
         }catch (e) {
             continue;
         }
-        kt = 1;
-    }
+    };
     if(kt == 0){
         var params = {
             TableName: 'Customers',
@@ -912,8 +910,8 @@ app.get('/logout',function (req,res) {
             }
         });
     };
+    res.clearCookie('check');
     req.logout();
-    check = 0;
     res.redirect('/');
 });
 

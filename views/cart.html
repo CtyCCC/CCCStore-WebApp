@@ -290,7 +290,7 @@
                 document.getElementById('idsp'+count).innerHTML  = JSON.parse(localStorage.getItem(Key)).name;
                 document.getElementById('idgiasp'+count).innerHTML  = gia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
                 document.getElementById('idimg' + count).src = JSON.parse(localStorage.getItem(Key)).image;
-                document.getElementById('sl_sp_'+count).setAttribute('value',JSON.parse(localStorage.getItem(Key)).sl);
+                document.getElementById('sl_sp_'+count).setAttribute('value',Number(JSON.parse(localStorage.getItem(Key)).sl));
                 var tt = gia * document.getElementById('sl_sp_'+count).getAttribute('value');
                 document.getElementById('tt_sp_'+count).innerHTML = tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ";
                 count++;
@@ -306,7 +306,7 @@
                         if(key == localStorage.key(i)){
                             let image = JSON.parse(localStorage.getItem(key)).image;
                             let price = JSON.parse(localStorage.getItem(key)).price;
-                            let soluong = JSON.parse(localStorage.getItem(key)).sl+1;
+                            let soluong = Number(JSON.parse(localStorage.getItem(key)).sl)+1;
                             var ob =  {'name': key, 'image': image, 'price':price, 'sl':soluong };
                             localStorage.setItem(key,JSON.stringify(ob));
                             var tt = price * soluong;
@@ -325,7 +325,7 @@
                     if(key == localStorage.key(i)){
                         let image = JSON.parse(localStorage.getItem(key)).image;
                         let price = JSON.parse(localStorage.getItem(key)).price;
-                        let soluong = JSON.parse(localStorage.getItem(key)).sl-1;
+                        let soluong = Number(JSON.parse(localStorage.getItem(key)).sl)-1;
                         //nếu nhỏ hơn 1 thì k cho giảm nữa, để là 1
                         if (soluong<1)
                         	soluong=1;
