@@ -130,6 +130,7 @@ var check = 0;
 
 ////Get trang product//////
 app.get("/",function (req,res) {
+    console
     var params={TableName:"Product"};
     var index_sp = 1;
     docClient.scan(params, onScan);
@@ -195,7 +196,7 @@ app.get("/",function (req,res) {
                                 }
                             }
                         });
-                        check = check +1;
+                        check = 1;
                     }
                 }
                 res.writeHead(200,{'Context-Type':'text/html'});
@@ -831,54 +832,58 @@ app.get('/logout',function (req,res) {
             if(decodeURIComponent(JSON.parse(data[x]).val) != 'undefined'){
                 sl.push(decodeURIComponent(JSON.parse(data[x]).val));
             }
-            var params1 = {
-                TableName: 'Product',
-                ProjectionExpression: '#id',
-                FilterExpression: '#name = :nnn',
-                ExpressionAttributeNames: {
-                    '#id': "idSP",
-                    '#name': "nameSP"
-                },
-                ExpressionAttributeValues: {
-                    ":nnn": ss,
-                }
-            };
-            docClient.scan(params1, onScan);
-            function onScan(err, data) {
-                if (err) {
-                    console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-                } else {
-                    data.Items.forEach(function (item) {
-                        sp.push(item.idSP);
-                    });
-                    var params = {
-                        TableName: 'Customers',
-                        Key: {
-                            "userName": userName,
-                            "password": pass
-                        },
-                        UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
-                        ExpressionAttributeValues: {
-                            ":i": sp,
-                            ":l": sl,
-                        },
-                        ReturnValues: "UPDATED_NEW"
-                    };
-                    docClient.update(params, function (err, data) {
-                        if (err) {
-                            console.log(err);
+            if(ss != 'undefined'){
+                var params1 = {
+                    TableName: 'Product',
+                    ProjectionExpression: '#id',
+                    FilterExpression: '#name = :nnn',
+                    ExpressionAttributeNames: {
+                        '#id': "idSP",
+                        '#name': "nameSP"
+                    },
+                    ExpressionAttributeValues: {
+                        ":nnn": ss,
+                    }
+                };
+                docClient.scan(params1, onScan);
+                function onScan(err, data) {
+                    if (err) {
+                        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+                    } else {
+                        data.Items.forEach(function (item) {
+                            sp.push(item.idSP);
+                        });
+                        if(sp.length == sl.length){
+                            var params = {
+                                TableName: 'Customers',
+                                Key: {
+                                    "userName": userName,
+                                    "password": pass
+                                },
+                                UpdateExpression: "set dsSP.id = :i, dsSP.sl=:l",
+                                ExpressionAttributeValues: {
+                                    ":i": sp,
+                                    ":l": sl,
+                                },
+                                ReturnValues: "UPDATED_NEW"
+                            };
+                            docClient.update(params, function (err, data) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                else {
+                                    console.log(JSON.stringify(data));
+                                }
+                            });
                         }
-                        else {
-                            console.log(JSON.stringify(data));
-                        }
-                    });
-                }
-                if (typeof data.LastEvaluatedKey != "undefined") {
-                    console.log("Scanning for more...");
-                    params1.ExclusiveStartKey = data.LastEvaluatedKey;
-                    docClient.scan(params1, onScan);
-                }
-            };
+                    }
+                    if (typeof data.LastEvaluatedKey != "undefined") {
+                        console.log("Scanning for more...");
+                        params1.ExclusiveStartKey = data.LastEvaluatedKey;
+                        docClient.scan(params1, onScan);
+                    }
+                };
+            }
         }catch (e) {
             continue;
         }
