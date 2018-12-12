@@ -15,7 +15,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 
 var nodemailer = require('nodemailer'); //gửi mail
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 
 //lấy image icon bootstrap css trong folder public
 app.use('/public', express.static('public'));
@@ -37,14 +37,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /////Khai báo config cho aws sử dụng dynamodb
-AWS.config.update({
-    region: "us-west-2",
-    //endpoint: "http://dynamodb.us-west-2.amazonaws.com"
-    endpoint: "http://localhost:8000"
-});
-
-AWS.config.accessKeyId="AKIAJZYP7FWFEJWB4YIQ";
-AWS.config.secretAccessKey="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";
+//endpoint: "http://dynamodb.us-west-2.amazonaws.com"
+AWS.config.loadFromPath('configDynamoDB.json');
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -779,36 +773,72 @@ app.get('/paymentfunction',function (req,res) {
         }
     };
 
-    var noidung = '\t\t\t THÔNG TIN ĐƠN HÀNG'
-        + '\n\t Tên: ' + ten
+    //đưa thông tin đơn vào db
+    var params = {
+        TableName: "Orders",
+        Item: {
+            "sdt" : sdt,
+            "ten" : ten,
+            "email": email,
+            "diachi" : dc,
+            "ghichu" : gc,
+            "dssp" : dssp
+        }
+    };
+    docClient.put(params, function(err, data) {
+        if (err) {
+            console.error("Unable to add movie", ten, ". Error JSON:",JSON.stringify(err,null,2));
+        } else {
+            console.log("Thêm đơn hàng vào DB thành công:", ten);
+        }
+    });
+
+    //nội dung email
+    var tuade =  '\t\t\t\t\t\t THÔNG TIN ĐƠN HÀNG \n';
+    var sanpham = '\n\tDanh sách sản phẩm:\n';
+    var tongtien=0;
+    for (var i=0;i<dssp.length;i++){
+        sanpham=sanpham+'\n\t\t-'+dssp[i].name+', Số lương: ' + dssp[i].sl + ', Đơn giá: '
+            + dssp[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        tongtien=tongtien + Number(dssp[i].sl)*Number(dssp[i].price);
+    }
+    var thongtin = '\n\n\t Tên: ' + ten
         + '\n\t SDT: ' + sdt
         + '\n\t Địa chỉ giao hàng: ' +dc
+        + '\n\t Tổng tiền: ' +tongtien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" VNĐ"
         + '\n\t Thời gian giao hàng dự kiến: 3-4 ngày'
         + '\n\t Ghi chú cho shiper: ' + gc
-        + '\n\t Chi tiết tại: www.cccstore.tk';
+        + '\n\t Mua thêm sản phẩm tại: www.cccstore.tk'
+        + '\n\t Mọi thắc mắc liên hệ: support@cccstore.tk';
+    var noidungmail = tuade + sanpham + thongtin;
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'cccstore.pc@gmail.com',
-            pass: 'Chienpro123'
+
+    //gửi email by ses
+    var aws = require('aws-sdk');
+    aws.config.loadFromPath('configSES.json');
+    var ses = new AWS.SES({apiVersion: '2010-12-01'});
+
+    // @todo - add HTML version
+    ses.sendEmail( {
+            Source: 'verify@cccstore.tk',
+            Destination: { ToAddresses: [email] },
+            Message: {
+                Subject:{
+                    Data: 'Xác nhận đơn hàng từ CCC Store!'
+                },
+                Body: {
+                    Text: {
+                        Data: noidungmail,
+                    }
+                }
+            }
         }
-    });
+        , function(err, data) {
+            if(err) throw err
+            console.log('Ðã gửi email thành công !!');
+        });
 
-    var mailOptions = {
-        from: 'cccstore.pc@gmail.com',
-        to: email,
-        subject: 'Xác nhận đơn hàng từ CCCStore',
-        text: noidung
-    };
 
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
     //cập nhật thông tin KH
     var params = {
         TableName:"Customers",
@@ -833,6 +863,8 @@ app.get('/paymentfunction',function (req,res) {
             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
         }
     });
+
+    res.redirect('/');
 });
 
 app.get('/logout',function (req,res) {
@@ -932,7 +964,44 @@ app.get('/logout',function (req,res) {
     res.redirect('/');
 });
 
+//Để lấy danh sách email từ bảng khách hàng vài file txt
+//mỗi tháng lấy 1 lần vào đàu tháng để gửi mail marketing
+var date = new Date(); //ngày hệ thống
 
+if (date.getDate()==12){
+    var params = {
+        TableName: "Customers",
+        ProjectionExpression: "Email"
+    };
+
+    docClient.scan(params, onScan);
+
+    function onScan(err, data) {
+        if (err) {
+            console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            var  dulieu = JSON.stringify(data);
+
+            fs.writeFile('listemailkh.txt', dulieu, function(err) {
+                if (err) {
+                    return console.error(err);
+                }
+                console.log("Tạo file danh sách email thành công");
+            });
+
+            //scan thêm, m?c d?nh l?nh scan ch? quét dc 1MB
+            if (typeof data.LastEvaluatedKey != "undefined") {
+                params.ExclusiveStartKey = data.LastEvaluatedKey;
+                docClient.scan(params, onScan);
+            }
+        }
+    }
+}
+else {
+    console.log('Nay không phải ngày tạo ds email');
+}
+
+//để test hôy
 app.get('/kh',function (req,res) {
     var params = {
         TableName: 'Customers',

@@ -1,14 +1,7 @@
 var AWS = require("aws-sdk");
 var fs = require('fs');
 
-AWS.config.update({
-    region: "us-west-2",
-    //endpoint: "http://dynamodb.us-west-2.amazonaws.com"
-    endpoint: "http://localhost:8000"
-});
-
-AWS.config.accessKeyId="AKIAJZYP7FWFEJWB4YIQ";
-AWS.config.secretAccessKey="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";
+AWS.config.loadFromPath('configDynamoDB.json');
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 

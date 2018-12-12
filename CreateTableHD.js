@@ -5,14 +5,14 @@ AWS.config.loadFromPath('configDynamoDB.json');
 var dynamodb = new AWS.DynamoDB();
 
 var params = {
-    TableName : "Customers",
+    TableName : "Orders",
     KeySchema: [
-        { AttributeName: "userName", KeyType: "HASH"},  //Partition key
-        { AttributeName: "password", KeyType: "RANGE" }  //Sort key
+        { AttributeName: "sdt", KeyType: "HASH"},  //Partition key
+        { AttributeName: "ten", KeyType: "RANGE" }  //Sort key
     ],
     AttributeDefinitions: [
-        { AttributeName: "userName", AttributeType: "S" },
-        { AttributeName: "password", AttributeType: "S" }
+        { AttributeName: "sdt", AttributeType: "S" },
+        { AttributeName: "ten", AttributeType: "S" }
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 10,

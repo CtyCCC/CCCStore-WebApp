@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aad67be5-9414-40d8-a518-e943f6c45077" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/CreateTableHD.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configDynamoDB.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configSES.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CreateTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/CreateTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CreateTableKH.js" beforeDir="false" afterPath="$PROJECT_DIR$/CreateTableKH.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoadData.js" beforeDir="false" afterPath="$PROJECT_DIR$/LoadData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoaddataKH.js" beforeDir="false" afterPath="$PROJECT_DIR$/LoaddataKH.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deleteTable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/product.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -95,34 +102,36 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="11" />
-          <entry key="html" value="25" />
-          <entry key="js" value="53" />
-          <entry key="json" value="20" />
+          <entry key="html" value="27" />
+          <entry key="js" value="77" />
+          <entry key="json" value="34" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="11" />
-          <entry key="HTML" value="25" />
-          <entry key="JSON" value="19" />
-          <entry key="JavaScript" value="53" />
+          <entry key="HTML" value="27" />
+          <entry key="JSON" value="33" />
+          <entry key="JavaScript" value="77" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="tsconfig" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="74" />
-          <entry key="html" value="2172" />
-          <entry key="js" value="5160" />
-          <entry key="json" value="578" />
+          <entry key="html" value="2173" />
+          <entry key="js" value="6563" />
+          <entry key="json" value="703" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="74" />
-          <entry key="HTML" value="2172" />
-          <entry key="JSON" value="575" />
-          <entry key="JavaScript" value="5160" />
+          <entry key="HTML" value="2173" />
+          <entry key="JSON" value="700" />
+          <entry key="JavaScript" value="6563" />
           <entry key="tsconfig" value="3" />
         </counts>
       </usages-collector>
@@ -133,71 +142,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="781" column="45" lean-forward="true" selection-start-line="781" selection-start-column="45" selection-end-line="781" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CreateTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="68" column="58" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/product.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="394" column="13" selection-start-line="394" selection-start-column="13" selection-end-line="394" selection-end-column="13" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/cart.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1515">
-              <caret line="214" column="117" selection-start-line="214" selection-start-column="117" selection-end-line="214" selection-end-column="117" />
-              <folding>
-                <element signature="n#style#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/product-detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="355" column="33" selection-start-line="355" selection-start-column="33" selection-end-line="355" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/payment.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="221" column="46" selection-start-line="221" selection-start-column="46" selection-end-line="221" selection-end-column="46" />
+            <state relative-caret-position="171">
+              <caret line="840" lean-forward="true" selection-start-line="840" selection-end-line="840" />
             </state>
           </provider>
         </entry>
@@ -214,7 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>span</find>
       <find>swal</find>
       <find>dangky</find>
       <find>tenKH</find>
@@ -244,6 +189,7 @@
       <find>paymentfunction</find>
       <find>UpdateItem succeeded:</find>
       <find>thanh</find>
+      <find>replace</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -266,19 +212,26 @@
         <option value="$PROJECT_DIR$/login.html" />
         <option value="$PROJECT_DIR$/product.html" />
         <option value="$PROJECT_DIR$/cart.html" />
-        <option value="$PROJECT_DIR$/CreateTable.js" />
-        <option value="$PROJECT_DIR$/CreateTableKH.js" />
-        <option value="$PROJECT_DIR$/LoaddataKH.js" />
-        <option value="$PROJECT_DIR$/LoadData.js" />
         <option value="$PROJECT_DIR$/views/login.html" />
         <option value="$PROJECT_DIR$/public/javascripts/vadidateFormDangky.js" />
         <option value="$PROJECT_DIR$/dataKH.json" />
-        <option value="$PROJECT_DIR$/deleteTable.js" />
         <option value="$PROJECT_DIR$/views/product-detail.html" />
-        <option value="$PROJECT_DIR$/views/payment.html" />
         <option value="$PROJECT_DIR$/views/product.html" />
         <option value="$PROJECT_DIR$/views/cart.html" />
+        <option value="$PROJECT_DIR$/deleteTable.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/config2.json" />
+        <option value="$PROJECT_DIR$/guimail.js" />
+        <option value="$PROJECT_DIR$/CreateTableHD.js" />
+        <option value="$PROJECT_DIR$/CreateTable.js" />
+        <option value="$PROJECT_DIR$/CreateTableKH.js" />
+        <option value="$PROJECT_DIR$/LoadData.js" />
+        <option value="$PROJECT_DIR$/LoaddataKH.js" />
+        <option value="$PROJECT_DIR$/views/payment.html" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/configDynamoDB.json" />
+        <option value="$PROJECT_DIR$/configSES.json" />
       </list>
     </option>
   </component>
@@ -312,6 +265,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -319,16 +273,10 @@
               <item name="CCCStore-WebApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="CCCStore-WebApp" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CCCStore-WebApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CCCStore-WebApp" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -342,11 +290,12 @@
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\lonel\Documents\GitHub\CCCStore-WebApp\views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GitHub\CCCStore-WebApp\views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lonel\Documents\GitHub\CCCStore-WebApp" />
+      <recent name="C:\Users\lonel\Documents\GitHub\CCCStore-WebApp\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -362,6 +311,9 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
+    <configuration name="CreateTableHD.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="CreateTableHD.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="CreateTableKH.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="CreateTableKH.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -374,23 +326,20 @@
     <configuration name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="deleteTable.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="deleteTable.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Node.js.app.js" />
-      <item itemvalue="Node.js.deleteTable.js" />
-      <item itemvalue="Node.js.LoadData.js" />
+      <item itemvalue="Node.js.CreateTableHD.js" />
       <item itemvalue="Node.js.CreateTableKH.js" />
+      <item itemvalue="Node.js.LoadData.js" />
       <item itemvalue="Node.js.LoaddataKH.js" />
+      <item itemvalue="Node.js.app.js" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.app.js" />
+        <item itemvalue="Node.js.LoadData.js" />
         <item itemvalue="Node.js.LoaddataKH.js" />
         <item itemvalue="Node.js.CreateTableKH.js" />
-        <item itemvalue="Node.js.deleteTable.js" />
-        <item itemvalue="Node.js.LoadData.js" />
+        <item itemvalue="Node.js.CreateTableHD.js" />
       </list>
     </recent_temporary>
   </component>
@@ -440,27 +389,36 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214584000" />
+    <option name="totallyTimeSpent" value="223597000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17782739" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15550596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31129032" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31129032" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49925596" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49925596" weight="0.32903227" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32903227" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49925596" weight="0.32903227" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4985119" weight="0.32903227" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -569,13 +527,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/npm-shrinkwrap.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -593,50 +544,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LoaddataKH.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LoadData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CreateTableKH.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deleteTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataKH.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/aws-sdk/lib/request.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,13 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CreateTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/product.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
@@ -676,13 +578,6 @@
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="221" column="46" selection-start-line="221" selection-start-column="46" selection-end-line="221" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -696,10 +591,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deleteTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" selection-start-line="2" selection-end-line="8" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listemailkh.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/aws-sdk/lib/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config2.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/guimail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataKH.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateTableKH.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateTableHD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LoaddataKH.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LoadData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="39" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/payment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="223" column="30" lean-forward="true" selection-start-line="223" selection-start-column="30" selection-end-line="223" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configSES.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configDynamoDB.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="25" lean-forward="true" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="781" column="45" lean-forward="true" selection-start-line="781" selection-start-column="45" selection-end-line="781" selection-end-column="45" />
+        <state relative-caret-position="171">
+          <caret line="840" lean-forward="true" selection-start-line="840" selection-end-line="840" />
         </state>
       </provider>
     </entry>
