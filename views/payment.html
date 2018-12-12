@@ -142,7 +142,7 @@
     </header>
 
     <div class="well container">
-        <form class="form-horizontal" method="get" action="paymentfunction">
+        <form class="form-horizontal" method="get" action="/paymentfunction">
             <center><legend>THÔNG TIN KHÁCH HÀNG</legend></center>
 
             <div class="form-group">
@@ -173,7 +173,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-lable"></label>
                 <div class="col-md-4">
-                    <input type="submit" value="Đặt hàng" class="btn btn-danger btn-block">
+                    <input type="submit" value="Đặt hàng" class="btn btn-danger btn-block" onclick="dathang()">
                 </div>
             </div>
 
@@ -200,6 +200,8 @@
 
     <script src="public/javascripts/main.js"></script>
     <script>
+        document.getElementById('cart-noti').innerHTML=localStorage.length;
+
         function dx() {
             for(var i =0 ;i<localStorage.length;i++){
                 var name= encodeURI(localStorage.key(i));
@@ -207,6 +209,31 @@
                 document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl});
             }
             localStorage.clear();
+        }
+
+        function dathang() {
+            swal("Bạn có chắc muốn đặt hàng?", {
+                buttons:  true,
+            }).then((datHang) => {
+                if (datHang) {
+                    if(localStorage.length<1) {
+                        swal("Bạn chưa có sản phẩm nào trong giở hàng!", "Vui lòng thêm sản phẩm vào giỏ hàng trước khi đặt hàng");
+                    }
+                    if(localStorage.length>0){
+                        localStorage.clear();
+                        swal({
+                            title: "Đặt hàng thành công!",
+                            text: "Cảm ơn! Hẹn gặp lại!",
+                            icon: "success",
+                            button: "OK!",
+                        }).then((loadlai) =>{
+                            if(loadlai){
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+            });
         }
     </script>
 </body>

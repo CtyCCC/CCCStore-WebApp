@@ -212,7 +212,7 @@
 				<div class="size15 trans-0-4">
 					<!-- Button -->
 					<a id="thanhtoan" href="/login">
-						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 pay">
+						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 pay" onclick="dathang()">
 							Tiến hành đặt hàng
 						</button>
 					</a>
@@ -387,6 +387,23 @@
                 document.cookie ='id'+i+'='+JSON.stringify({key :name,val :sl});
             }
             localStorage.clear();
+        }
+        function dathang() {
+            var res = document.cookie;
+            var multiple = res.split(";");
+            if(multiple.length>1){
+                for(var i = 0; i < multiple.length; i++) {
+                    document.cookie = 'dh'+i+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+                }
+			}
+            for(var i =0 ;i<localStorage.length;i++){
+                var Key = localStorage.key(i);
+                var ten = JSON.parse(localStorage.getItem(Key)).name;
+                var sl = Number(JSON.parse(localStorage.getItem(Key)).sl);
+                var price = Number(JSON.parse(localStorage.getItem(Key)).price) * sl;
+                var name = encodeURI(ten);
+                document.cookie ='dh'+i+'='+JSON.stringify({dh :name, sl :sl, price:price});
+            }
         }
 	</script>
 <!--===============================================================================================-->

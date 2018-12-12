@@ -759,11 +759,31 @@ app.get('/paymentfunction',function (req,res) {
     var dc = query.txtdiachi;
     var gc = query.txtghichu;
 
+    ///Ds sp trong giỏ hàng
+    var dl = req.cookies;
+    var dssp=[];
+    for (x in dl){
+        try {
+            var sp = {};
+            var name = decodeURIComponent(JSON.parse(dl[x]).dh);
+            var sl = Number(decodeURIComponent(JSON.parse(dl[x]).sl));
+            var price = decodeURIComponent(JSON.parse(dl[x]).price);
+            if(name != 'undefined' && sl != 'NaN' && price != 'undefined'){
+                sp.name = name;
+                sp.sl = sl;
+                sp.price = price;
+                dssp.push(sp);
+            }
+        }catch (e) {
+            continue;
+        }
+    };
+
     var noidung = '\t\t\t THÔNG TIN ĐƠN HÀNG'
         + '\n\t Tên: ' + ten
         + '\n\t SDT: ' + sdt
         + '\n\t Địa chỉ giao hàng: ' +dc
-        + '\n\t Thời gian giao hàng dự kiến: 3-4 ngày làm việc'
+        + '\n\t Thời gian giao hàng dự kiến: 3-4 ngày'
         + '\n\t Ghi chú cho shiper: ' + gc
         + '\n\t Chi tiết tại: www.cccstore.tk';
 
@@ -789,7 +809,6 @@ app.get('/paymentfunction',function (req,res) {
             console.log('Email sent: ' + info.response);
         }
     });
-
     //cập nhật thông tin KH
     var params = {
         TableName:"Customers",
@@ -814,8 +833,6 @@ app.get('/paymentfunction',function (req,res) {
             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
         }
     });
-	
-	res.redirect('/');
 });
 
 app.get('/logout',function (req,res) {
