@@ -24,9 +24,9 @@
       "integrity": "sha1-ml9pkFGx5wczKPKgCJaLZOopVdI="
     },
     "aws-sdk": {
-      "version": "2.364.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.364.0.tgz",
-      "integrity": "sha512-A831FbWeCW893/KtQDUOwgYD3BMa6v/cpbw74LegUgdsOVSZHgibMaa0CepOB0KfMMKACdRsEETvumdQBnL3XA==",
+      "version": "2.374.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.374.0.tgz",
+      "integrity": "sha512-r5t9ohiLtpmdv6S/o8XL+s8nHwo0Egox4CqS+iWguehnAUcgw44IIGAaWY/1tD7voVvJHG9edNu9blxuxS/snw==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
@@ -437,6 +437,11 @@
         "boolbase": "~1.0.0"
       }
     },
+    "oauth": {
+      "version": "0.9.15",
+      "resolved": "https://registry.npmjs.org/oauth/-/oauth-0.9.15.tgz",
+      "integrity": "sha1-vR/vr2hslrdUda7VGWQS/2DPucE="
+    },
     "on-finished": {
       "version": "2.3.0",
       "resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.3.0.tgz",
@@ -472,12 +477,66 @@
         "pause": "0.0.1"
       }
     },
+    "passport-facebook": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/passport-facebook/-/passport-facebook-2.1.1.tgz",
+      "integrity": "sha1-w50LUq5NWRYyRaTiGnubYyEwMxE=",
+      "requires": {
+        "passport-oauth2": "1.x.x"
+      }
+    },
+    "passport-google-oauth": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/passport-google-oauth/-/passport-google-oauth-1.0.0.tgz",
+      "integrity": "sha1-ZfUGMxkq0GJ6GLCJYAdxCdhOt20=",
+      "requires": {
+        "passport-google-oauth1": "1.x.x",
+        "passport-google-oauth20": "1.x.x"
+      }
+    },
+    "passport-google-oauth1": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/passport-google-oauth1/-/passport-google-oauth1-1.0.0.tgz",
+      "integrity": "sha1-r3SoA99R7GRvZqRNgigr5vEI4Mw=",
+      "requires": {
+        "passport-oauth1": "1.x.x"
+      }
+    },
+    "passport-google-oauth20": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/passport-google-oauth20/-/passport-google-oauth20-1.0.0.tgz",
+      "integrity": "sha1-O5YOih1w0dvnlGFcgnxoxAOSpdA=",
+      "requires": {
+        "passport-oauth2": "1.x.x"
+      }
+    },
     "passport-local": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/passport-local/-/passport-local-1.0.0.tgz",
       "integrity": "sha1-H+YyaMkudWBmJkN+O5BmYsFbpu4=",
       "requires": {
         "passport-strategy": "1.x.x"
+      }
+    },
+    "passport-oauth1": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/passport-oauth1/-/passport-oauth1-1.1.0.tgz",
+      "integrity": "sha1-p96YiiEfnPRoc3cTDqdN8ycwyRg=",
+      "requires": {
+        "oauth": "0.9.x",
+        "passport-strategy": "1.x.x",
+        "utils-merge": "1.x.x"
+      }
+    },
+    "passport-oauth2": {
+      "version": "1.4.0",
+      "resolved": "https://registry.npmjs.org/passport-oauth2/-/passport-oauth2-1.4.0.tgz",
+      "integrity": "sha1-9i+BWDy+EmCb585vFguTlaJ7hq0=",
+      "requires": {
+        "oauth": "0.9.x",
+        "passport-strategy": "1.x.x",
+        "uid2": "0.0.x",
+        "utils-merge": "1.x.x"
       }
     },
     "passport-strategy": {
@@ -630,6 +689,11 @@
       "requires": {
         "random-bytes": "~1.0.0"
       }
+    },
+    "uid2": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/uid2/-/uid2-0.0.3.tgz",
+      "integrity": "sha1-SDEm4Rd03y9xuLY53NeZw3YWK4I="
     },
     "unpipe": {
       "version": "1.0.0",

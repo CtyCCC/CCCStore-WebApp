@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "aws-sdk": "latest",
+    "aws-sdk": "^2.374.0",
     "cheerio": "^1.0.0-rc.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -11,6 +11,8 @@
     "express-session": "^1.15.6",
     "nodemailer": "^4.7.0",
     "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0"
   },
   "scripts": {

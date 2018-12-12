@@ -7,6 +7,8 @@ var url = require('url');
 var path = require('path'); //bỏ dấu / trong name (root)
 var session = require('express-session');
 var cookieParser =require('cookie-parser');
+var FacebookStrategy =require('passport-facebook').Strategy;
+var GoogleStrategy =require('passport-google-oauth').OAuth2Strategy;
 
 //passport
 var passport = require('passport');
@@ -76,6 +78,128 @@ passport.use(new LocalStrategy(
         })
     }
 ))
+passport.use(new FacebookStrategy({
+        clientID: "322620955226186",
+        clientSecret: "8786f9e622100eeca2d4519b75e1383b",
+        callbackURL: "https://www.shopccc.tk/auth/facebook/callback",
+        profileFields: ['email']
+    },
+    function(accessToken, refreshToken, profile, done) {
+        var params = {
+            TableName: "Customers",
+            ProjectionExpression: "#user",
+            KeyConditionExpression: "#user = :u",
+            ExpressionAttributeNames: {
+                "#user": "userName",
+            },
+            ExpressionAttributeValues: {
+                ":u" : profile.id,
+            }
+        };
+        docClient.query(params,function (err,data) {
+            if(err)
+                console.log(err);
+            else
+            {
+                var record = data.Items;
+                if(record.length>0)
+                {
+                    return done(null,record[0]);
+                }
+                else
+                {
+                    var user = {
+                        TableName: "Customers",
+                        Item: {
+                            "userName" : profile.id,
+                            "password" :'facebook',
+                            "sdtKH": '1',
+                            "tenKH" : profile.displayName,
+                            "Email" : profile.emails[0].value,
+                            "diaChi" : '1',
+                            "dsSP":{
+                                'id':[],
+                                'sl':[]
+                            }
+                        }
+                    };
+                    docClient.put(user, function(err) {
+                        if(err)
+                            console.log('loi',JSON.stringify(err));
+                        else{
+                            var record = user.Item;
+                            console.log('them moi');
+                            return done(null,record);
+                        }
+
+                    })
+                }
+            }
+        })
+
+    }
+));
+
+passport.use(new GoogleStrategy({
+        clientID: "3723581223-m2ie4igv3skm33ddblvromiuhait1q9b.apps.googleusercontent.com",
+        clientSecret: "ujbKyzszypg7O4uVWRSzqvyP",
+        callbackURL: "https://www.shopccc.tk/auth/google/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        var params = {
+            TableName: "Customers",
+            ProjectionExpression: "#user",
+            KeyConditionExpression: "#user = :u",
+            ExpressionAttributeNames: {
+                "#user": "userName",
+            },
+            ExpressionAttributeValues: {
+                ":u" : profile.id,
+            }
+        };
+        docClient.query(params,function (err,data) {
+            if(err)
+                console.log(err);
+            else
+            {
+                var record = data.Items;
+                if(record.length>0)
+                {
+                    return done(null,record[0]);
+                }
+                else
+                {
+                    var user = {
+                        TableName: "Customers",
+                        Item: {
+                            "userName" : profile.id,
+                            "password" :'google',
+                            "sdtKH": '1',
+                            "tenKH" : profile.displayName,
+                            "Email" : profile.emails[0].value,
+                            "diaChi" : '1',
+                            "dsSP":{
+                                'id':[],
+                                'sl':[]
+                            }
+                        }
+                    };
+                    docClient.put(user, function(err) {
+                        if(err)
+                            console.log('loi',JSON.stringify(err));
+                        else{
+                            var record = user.Item;
+                            console.log('them moi');
+                            return done(null,record);
+                        }
+
+                    })
+                }
+            }
+        })
+
+    }
+));
 
 //Hàm được dùng để lưu thông tin user vào session nếu xác thực thành công
 passport.serializeUser(function(user, done) {
@@ -659,6 +783,17 @@ app.route('/login')
 })
     .post(passport.authenticate('local',{successRedirect: '/',failureRedirect:'/login',failureFlash: true }))
 
+// Login FB và Login GG
+
+app.get('/auth/facebook',passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook',{successRedirect: '/',failureRedirect:'/login'}));
+
+app.get('/auth/google',passport.authenticate('google',
+    { scope: ['https://www.googleapis.com/auth/plus.login','https://www.googleapis.com/auth/plus.profile.emails.read']}));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {successRedirect: '/',failureRedirect: '/login' }));
+
+
 app.get('/signup',function (req,res) {
     var root = url.parse(req.url, true);
     var query = root.query;
@@ -863,8 +998,6 @@ app.get('/paymentfunction',function (req,res) {
             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
         }
     });
-
-    res.redirect('/');
 });
 
 app.get('/logout',function (req,res) {
